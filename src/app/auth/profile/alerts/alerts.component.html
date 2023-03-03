@@ -1,0 +1,42 @@
+<p (click)="alertsclick()">alerts works!</p>
+<nb-card>
+    <nb-card-body>
+        <ngx-datatable class="material" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0"
+            [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
+            <ngx-datatable-column name="rule" prop="rule">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value }}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Created Date" prop="rule">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value }}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="rule">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value }}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="rule">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value }}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="rule">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value }}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="rule">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value }}
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+        <!-- <div>{{rows | json}}</div> -->
+        <!-- <div *ngFor="let row of rows">{{row | json}}</div> -->
+    </nb-card-body>
+</nb-card>
+
+<!-- *ngfor = let row of rows -->

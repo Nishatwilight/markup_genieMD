@@ -1,0 +1,65 @@
+.sizze{
+    width: 70%;
+    justify-content: start;
+}
+
+.btn_roll{
+    padding-left: 26px !important;
+    padding-right: 26.5px !important;
+}
+.tab_set{
+    display: flex !important;
+    justify-content: space-between !important;
+
+    width:100%;
+    background:green;
+}
+.medical_img{
+    width: 40% !important;
+}
+.scroll{
+    max-height: 100%;
+    overflow-y: hidden;
+}
+#cont{
+    // max-height: 100%;
+    // overflow-y: scroll !important
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+}
+.display{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+input[type="search"][value="dark"]::-webkit-search-cancel-button {
+    background:
+     linear-gradient(135deg, transparent 0%,transparent 43%,#fff 45%,#fff 55%,transparent 57%,transparent 100%) ;
+}
+.card_ht{
+    height: calc(var(--vh, 1vh) * 100) !important;
+    // width: 25%;
+}
+.leftCard{
+    height: 100%;
+}
+.rightCard{
+    height: calc(var(--vh, 1vh) * 100) !important;
+    overflow: auto;
+}
+.cardht{
+    overflow-x: hidden !important;
+}
+.addPatient_card{
+    width: 117%;
+}
+.addNote{
+    width: 130% !important;
+}
+.addPatientReminder{
+    font-size: 14px;
+    font-weight: bold;
+}
+.bbb{
+    overflow: auto !important;
+}
