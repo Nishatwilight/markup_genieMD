@@ -27,10 +27,10 @@ export class InterceptorInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       tap(
-        (        result: any) => {
+        (result: any) => {
           console.log("success (interceptor)", result);    
         },
-        (        error: any) => {
+        (error: any) => {
           console.log("error (interceptor)", error)
         }
       )

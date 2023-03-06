@@ -13,6 +13,7 @@ import { TaskComponent } from './profile/task/task.component';
 import { AlertsComponent } from './profile/alerts/alerts.component';
 // import { SnapshotComponent } from './profile/snapshot/snapshot.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AlertNotesComponent } from './profile/alerts/alert-notes/alert-notes.component';
 
 
 
@@ -29,6 +30,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     HistoryComponent,
     TaskComponent,
     AlertsComponent,
+    AlertNotesComponent,
     // SnapshotComponent,
 
   ],

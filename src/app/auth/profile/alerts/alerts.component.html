@@ -1,34 +1,45 @@
 <p (click)="alertsclick()">alerts works!</p>
-<nb-card>
+<nb-card class="mb-0">
     <nb-card-body>
         <ngx-datatable class="material" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0"
             [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
-            <ngx-datatable-column name="rule" prop="rule">
+            <ngx-datatable-column name=" "  prop="alertValue">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <nb-icon *ngIf="value == 1" status="danger"icon="alert-circle-outline"></nb-icon>
+                    <nb-icon *ngIf="value == 2" status="success" icon="alert-circle-outline"></nb-icon>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Created Date" prop="alertTime">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <span>{{getDateValue(value)}}</span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="alertStatus" [maxWidth]="100">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value }}   
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Resolved Date" prop="alertResolved">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     {{ value }}
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Created Date" prop="rule">
+            <ngx-datatable-column name="Notes" prop="alertData" [maxWidth]="100">
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <a (click)="viewNotes(row)">view Notes</a>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Reading" prop="alertData">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     {{ value }}
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Status" prop="rule">
+            <ngx-datatable-column name="Rule" prop="rule">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     {{ value }}
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Status" prop="rule">
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{ value }}
-                </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Status" prop="rule">
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{ value }}
-                </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Status" prop="rule">
+            <ngx-datatable-column name="Action" prop="">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     {{ value }}
                 </ng-template>
@@ -38,5 +49,4 @@
         <!-- <div *ngFor="let row of rows">{{row | json}}</div> -->
     </nb-card-body>
 </nb-card>
-
 <!-- *ngfor = let row of rows -->

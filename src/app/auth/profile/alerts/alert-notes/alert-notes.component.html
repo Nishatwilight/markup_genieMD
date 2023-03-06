@@ -1,0 +1,14 @@
+
+<nb-card>
+    <nb-card-header class="d-flex justify-content-between">
+        <div>Alert Notes</div>
+        <button class="btn btn-success">SMART NOTES</button>
+    </nb-card-header>
+    <nb-card-body>
+        <textarea nbInput fullWidth placeholder="Write Notes" rows="4" cols="75"></textarea>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-end">
+        <button nbButton class="mx-2" status="danger" (click)="dialog.close()">DONE</button>
+        <button nbButton disabled="ture">ADD</button>
+    </nb-card-footer>
+</nb-card>

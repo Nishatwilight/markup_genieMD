@@ -26,7 +26,7 @@
                   </div> 
                  <div class="form-group mt-3">
                       <nb-form-field>
-                          <input  [type]="getInputType()" nbInput fullWidth placeholder="Enter Password" [class.is-invalid]="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" 
+                          <input  [type]="password" nbInput fullWidth placeholder="Enter Password" [class.is-invalid]="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" 
                           formControlName="password"  class="form-control" id="password" name="password">
                           <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
                               <small *ngIf="registrationForm.get('password')?.errors?.['required']" class="text-danger">Password is

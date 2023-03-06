@@ -49,4 +49,7 @@ export class CareManagerService {
   getTaskForCompletedDateApi(completeDate: any):Observable<any>{
     return this.http.post(`CarePlan/GetCompletedTasks`, completeDate, { headers: this.getHeaders() })
   }
+  alertActionApi(id: any):Observable<any>{
+    return this.http.get(`Alerts/AlertActions/${id}`, { headers: this.getHeaders() })
+  }
 }
