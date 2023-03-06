@@ -46,14 +46,12 @@ rows: any;
   }
   viewNotes(data: any){
     console.log("The view Notes data", data); 
-    const id = data.id
+    // const id = data.id
     const modalRef: any = this.dialogService?.open(AlertNotesComponent);
-    console.log("viewNotes",modalRef);
+    // console.log("viewNotes",modalRef);
     modalRef.componentRef.instance.alertData = data;
-
-    this.careService.alertActionApi(data.id).subscribe((data: any)=>{
-      console.log("this is Alert Action API data", data);
-      
-    })
+    // const instance = new AlertNotesComponent((this.dialogService as any), modalRef);
+    // instance.alertData = '';
+   
   }
 }

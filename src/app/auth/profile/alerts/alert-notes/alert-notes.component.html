@@ -6,6 +6,22 @@
     </nb-card-header>
     <nb-card-body>
         <textarea nbInput fullWidth placeholder="Write Notes" rows="4" cols="75"></textarea>
+        <div class="d-flex flex-row">
+            <div *ngFor = 'let note of alertsDataList' >
+                <div class="d-block w-100 d-flex">
+                    <span class="subtitle text-primary col-3">kTextNotes </span>
+                    <div [innerHTML]="note.actionData?.notes || note.actionData"></div>
+                </div>
+                <div class="d-block w-100 d-flex">
+                    <span class="subtitle text-primary col-3">kProviderName</span>
+                    <div>{{note.providerName}}</div>
+                </div>
+                <div class="d-block w-100 d-flex">
+                    <span class="subtitle text-primary col-3">kCreatedAt</span>
+                    <div>{{note.actionTime | date : 'MM/dd/YYYY'}} </div>
+                </div>
+            </div>
+        </div>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-end">
         <button nbButton class="mx-2" status="danger" (click)="dialog.close()">DONE</button>
