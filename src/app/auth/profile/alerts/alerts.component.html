@@ -1,10 +1,17 @@
 <p (click)="alertsclick()">alerts works!</p>
-<nb-card class="mb-0">
-    <nb-card-body>
-        <ngx-datatable class="material" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0"
-            [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
+<nb-card class="mb-0" size="giant">
+    <nb-card-body >
+        <div class="d-flex justify-content-end my-2">
+                  <button nbButton [nbContextMenu]="items" nbContextMenuTrigger="hover"> Clear All</button>
+            <nb-actions size="medium">
+                <nb-action icon="plus-outline"></nb-action>
+                <nb-action icon="refresh-outline"></nb-action>
+            </nb-actions>
+        </div>
+        <ngx-datatable class="material h-100" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0" 
+            [rowHeight]="50" [scrollbarV]="true" >
             <ngx-datatable-column name=" "  prop="alertValue">
-                <ng-template let-value="value" ngx-datatable-cell-template>
+                <ng-template let-value="value" ngx-datatable-cell-template >
                     <nb-icon *ngIf="value == 1" status="danger"icon="alert-circle-outline"></nb-icon>
                     <nb-icon *ngIf="value == 2" status="success" icon="alert-circle-outline"></nb-icon>
                 </ng-template>
@@ -21,7 +28,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Resolved Date" prop="alertResolved">
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{ value }}
+                    <span>{{getDateValue(value)}}</span>
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Notes" prop="alertData" [maxWidth]="100">

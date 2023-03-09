@@ -18,12 +18,10 @@ export class AlertNotesComponent implements OnInit {
   triggerApiCall() {
      this.careService.alertActionApi(this.alertData.id).subscribe((data: any)=>{
       console.log("this is Alert Action API data", data);
-      this.alertsDataList = data.list;
-      
+      this.alertsDataList = data.list;      
     })
   }
   alertData: any;
- 
 }
 
 // class Person {

@@ -1,1 +1,19 @@
 <p (click)="historyFun()">history works!</p>
+<nb-card>
+    <nb-card-header class="ms-auto">
+      <nb-actions size="medium">
+        <nb-action  icon="plus-circle-outline"></nb-action>
+        <nb-action  icon="refresh-outline"></nb-action>
+      </nb-actions>
+    </nb-card-header>
+    <nb-card-body>
+        <ngx-datatable class="material" [rows]="row" columnMode="force" [headerHeight]="50" [footerHeight]="0"
+        [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
+        <ngx-datatable-column name="Date & Time" prop="audittime">
+            <ng-template let-value="value" ngx-datatable-cell-template> 
+                
+            </ng-template>
+        </ngx-datatable-column>
+        </ngx-datatable>
+    </nb-card-body>
+  </nb-card>

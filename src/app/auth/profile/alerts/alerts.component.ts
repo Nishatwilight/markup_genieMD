@@ -12,7 +12,9 @@ import { AlertNotesComponent } from './alert-notes/alert-notes.component';
 export class AlertsComponent {
   patientProfile: any;
   patientInfo: any;
-rows: any;
+  rows: any;
+  items = [{ title: 'Clear All Warnings' }, { title: 'Clear All Alerts' }];
+
 
   @Input()
   get gettingPatientDetails(){
@@ -34,8 +36,7 @@ rows: any;
     this.careService.getAlertApi(this.patientInfo?.patientID).subscribe((data: any) =>{
       this.rows = data.list;
       console.log('the getAlertApi API', data);
-      console.log('The getAlertApi API data.list', this.rows);
-      
+      console.log('The getAlertApi API data.list', this.rows);  
       this.cd.detectChanges();
     })
   }
@@ -50,8 +51,7 @@ rows: any;
     const modalRef: any = this.dialogService?.open(AlertNotesComponent);
     // console.log("viewNotes",modalRef);
     modalRef.componentRef.instance.alertData = data;
-    // const instance = new AlertNotesComponent((this.dialogService as any), modalRef);
-    // instance.alertData = '';
+ 
    
   }
 }

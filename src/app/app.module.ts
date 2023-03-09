@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NbDatepickerModule, NbLayoutModule, NbThemeModule } from '@nebular/theme';
+import { NbContextMenuModule, NbDatepickerModule, NbLayoutModule, NbMenuModule, NbThemeModule } from '@nebular/theme';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +27,9 @@ import { AuthService } from './shared/service/auth.service';
     ReactiveFormsModule,
     HttpClientModule,
     NbDatepickerModule.forRoot(),
+
+    NbMenuModule.forRoot(),
+
 
   ], 
   providers: [AuthService,

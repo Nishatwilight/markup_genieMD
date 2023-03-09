@@ -9,6 +9,7 @@ import { CareManagerService } from 'src/app/shared/service/care-manager.service'
 export class HistoryComponent {
   patientProfile: any;
   details: any;
+  row: any;
   @Input()
   get gettingPatientDetails(){
     return this.patientProfile
@@ -23,7 +24,12 @@ constructor(private careService: CareManagerService){}
 historyFun(){
   this.careService.getHistoryApi(this.details.patientID).subscribe((data)=>{
     console.log('This is HistoryFun API', data);
+    this.row =data.list
+    console.log('checking the date and time',data.list);
+    
     
   })
 }
+
+
 }
