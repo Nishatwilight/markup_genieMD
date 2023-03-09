@@ -10,6 +10,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorInterceptor } from './shared/interceptor/interceptor.interceptor';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AuthService } from './shared/service/auth.service';
+import { NgChartjsModule } from 'ng-chartjs';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { AuthService } from './shared/service/auth.service';
     NbDatepickerModule.forRoot(),
 
     NbMenuModule.forRoot(),
+    // NgChartjsModule.registerPlugin([...]),
 
 
   ], 

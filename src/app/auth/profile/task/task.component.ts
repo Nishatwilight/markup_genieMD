@@ -10,8 +10,7 @@ import * as moment from 'moment';
 export class TaskComponent {
 patientProfile: any;
   patientDetails: any;
-  dateValue = ''
-  todayDate: any
+  dateValue = moment(new Date()).format("YYYY-MM-DD")
 constructor(private careService: CareManagerService){}
 @Input()
 get gettingPatientDetails(){
@@ -22,13 +21,18 @@ if(value){
 this.patientDetails = value
 }
 }
-getTaskFun(){
 
-}
-completedTaskFun(){
 
-}
-today(){
+taskFun(type?: any){
+  if(type == -1){
+    this.dateValue=moment(this.dateValue).subtract(1, 'day').format("YYYY-MM-DD")
+  }
+  else if(type == 1){
+    this.dateValue = moment(this.dateValue).add(1, 'day').format("YYYY-MM-DD")
+  }
+  else{
+    this.dateValue = moment(new Date()).format("YYYY-MM-DD")
+  }
   const taskDate = 
   {
   "byUsername":"",

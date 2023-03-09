@@ -1,13 +1,15 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 import * as moment from 'moment';
+import Chart from 'chart.js/auto';
+
 
 @Component({
   selector: 'app-vitals',
   templateUrl: './vitals.component.html',
   styleUrls: ['./vitals.component.scss']
 })
-export class VitalsComponent implements OnInit {
+export class VitalsComponent implements OnInit, AfterViewInit{
   @Input() 
   get getPatientDetails() {
     return this.patientProfile;
@@ -21,7 +23,76 @@ export class VitalsComponent implements OnInit {
       
     }
   }
+  name = 'Angular   6';
+  canvas: any;
+  ctx: any;
+  xAxes: any
+  @ViewChild('mychart') mychart: any;
 
+  ngAfterViewInit() {
+    this.canvas = this.mychart.nativeElement; 
+    this.ctx = this.canvas.getContext('2d');
+
+    let myChart = new Chart(this.ctx, {
+      type: 'line',
+      
+      data: {
+        datasets: [{
+          label: 'Höhenlinie',
+          backgroundColor: "rgba(255, 99, 132,0.4)",
+          borderColor: "rgb(255, 99, 132)",
+          fill: true,
+          data: [
+            { x: 1, y: 2 },
+            { x: 2500, y: 2.5 },
+            { x: 3000, y: 5 },
+            { x: 3400, y: 4.75 },
+            { x: 3600, y: 4.75 },
+            { x: 5200, y: 6 },
+            { x: 6000, y: 9 },
+            { x: 7100, y: 6 },
+          ],
+        }]
+      },
+      // options: {
+      //   responsive: true,
+      //   title: {
+      //     display: true,
+      //     text: 'Höhenlinie'
+      //   },
+      //   scales: {
+      //     xAxes: [{
+      //       type: 'linear',
+      //       position: 'bottom',
+      //       ticks: {
+      //         userCallback: function (tick: any) {
+      //           if (tick >= 1000) {
+      //             return (tick / 1000).toString() + 'km';
+      //           }
+      //           return tick.toString() + 'm';
+      //         }
+      //       },
+      //       scaleLabel: {
+      //         labelString: 'Länge',
+      //         display: true,
+      //       }
+      //     }],
+      //    yAxes: [{
+      //       type: 'linear',
+      //       ticks: {
+      //         userCallback: function (tick: any) {
+      //           return tick.toString() + 'm';
+      //         }
+      //       },
+      //       scaleLabel: {
+      //         labelString: 'Höhe',
+      //         display: true
+      //       }
+      //     }]
+      //   }
+      // }
+    });
+  }
   patientProfile: any;
   noOfDays = -1;
   vitalslist: any;

@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  // patientProfile: any;
+  patientProfile: any;
   profile: any;
   userID: any;
   // users: any;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 
@@ -23,7 +23,9 @@ export class AssessmentComponent implements OnInit {
      
    }
 
-  constructor(private careService: CareManagerService){
+  constructor(
+    private careService: CareManagerService,
+    private cd: ChangeDetectorRef){
 }
 ngOnInit(){
 }
@@ -51,14 +53,9 @@ assessmentFun(){
       return row;
     })
     this.rows = [...patient_details];
-  })
+    this.cd.detectChanges();
 
-  // this.careService.displayProfile(this.PatientDetails.patientID).subscribe((data)=> {
-  //   console.log('The display profile Api in assesment component', data);
-  
-    
-    
-  // })
+  })
 }
 getValue(value: any){
   // console.log("&&&&&&&&&&&&", value);

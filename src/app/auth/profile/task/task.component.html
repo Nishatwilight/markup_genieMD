@@ -4,14 +4,13 @@
           <nb-tab tabTitle="Task"></nb-tab>
           <nb-tab tabTitle="Completed"></nb-tab>
        </nb-tabset>
-       <div class="d-flex ">
-           <nb-icon  (click)="getTaskFun()" class=" my-auto mx-1 " icon="arrow-ios-back-outline"></nb-icon>
-           <input nbInput placeholder="Date" class="form-control" [nbDatepicker]="datePicker"
-           size="small"[(ngModel)]="dateValue" value={{todayDate}}>
-           <nb-datepicker #datePicker></nb-datepicker>
-           <nb-icon  (click)="completedTaskFun()" class=" my-auto mx-1" icon="arrow-ios-forward-outline">
-           </nb-icon>
-       </div>
-       <button nbButton status="info" (click)="today()">Today</button>
+          <div class="d-flex ">
+              <nb-icon  (click)="taskFun(-1)" class=" my-auto mx-1 " style="font-size: 2rem;" icon="arrow-ios-back-outline"></nb-icon>
+              <input nbInput placeholder="Date" class="form-control" [nbDatepicker]="datePicker"
+              size="small"[(ngModel)]="dateValue">
+              <nb-datepicker #datePicker></nb-datepicker>
+              <nb-icon  (click)="taskFun(1)" class=" my-auto mx-1" style="font-size: 2rem;" icon="arrow-ios-forward-outline"></nb-icon>
+              <button nbButton status="info" (click)="taskFun()">Today</button>
+          </div>
     </nb-card-body>
  </nb-card>

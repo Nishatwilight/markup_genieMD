@@ -14,6 +14,7 @@ import { AlertsComponent } from './profile/alerts/alerts.component';
 // import { SnapshotComponent } from './profile/snapshot/snapshot.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AlertNotesComponent } from './profile/alerts/alert-notes/alert-notes.component';
+import { NgChartjsModule } from 'ng-chartjs';
 
 
 
@@ -59,8 +60,8 @@ import { AlertNotesComponent } from './profile/alerts/alert-notes/alert-notes.co
     NbDatepickerModule,
     NbActionsModule,
     NgxDatatableModule,
-    NbContextMenuModule
-
+    NbContextMenuModule,
+    NgChartjsModule,
     
 
   ]

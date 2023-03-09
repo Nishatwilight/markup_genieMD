@@ -221,7 +221,7 @@
             <div class="row" *ngIf="!patientProfile">
               <!-- card2 col-1 -->
               <div class="col-12 col-sm-12 col-md-12 col-lg-3 my-2">
-                <nb-user size="giant" [picture]="profile?.imageURL" onlyPicture></nb-user>
+                <nb-user size="giant" [picture]="profile?.imageURL " onlyPicture></nb-user>
                 <div>{{profile?.firstName}} {{profile?.lastName}}</div>
                 <small>{{profile?.dob}}</small>
                 <div class="row">
@@ -238,9 +238,9 @@
               <!-- card2 col-2 -->
               <div class=" col-12 col-sm-12 col-md-12 col-lg-3 my-2">
                 <div><nb-icon nbTooltip="Phone" nbTooltipPlacement="left" icon="phone" class="m-2"></nb-icon>
-                  {{profile?.cellNumber}}</div>
+                  {{profile?.cellNumber }}</div>
                 <div><nb-icon nbTooltip="Email" nbTooltipPlacement="left" icon="email-outline"
-                    class="m-2"></nb-icon>{{profile?.profileEmail}}</div>
+                    class="m-2"></nb-icon>{{profile?.profileEmail }}</div>
                 <div [ngSwitch]="profile?.gender">
                   <div *ngSwitchCase="0"><i nbTooltip="Gender" nbTooltipPlacement="left"
                       class="fa-solid fa-venus-mars m-2"></i>Male</div>
@@ -303,7 +303,7 @@
             <div class="row" *ngIf="patientProfile">
               <!-- card2 col-1 -->
               <div class="col-12 col-sm-12 col-md-12 col-lg-3 my-2">
-                <nb-user size="giant" [picture]="patientProfile?.imageURL" onlyPicture></nb-user>
+                <nb-user size="giant" [picture]="patientProfile?.imageURL || patientProfile?.imageUrl" onlyPicture></nb-user>
                 <div>{{patientProfile?.firstName}} {{patientProfile?.lastName}}</div>
                 <small>{{patientProfile?.dob}}</small>
                 <div class="row">
@@ -320,9 +320,9 @@
               <!-- card2 col-2 -->
               <div class=" col-12 col-sm-12 col-md-12 col-lg-3 my-2">
                 <div><nb-icon nbTooltip="Phone" nbTooltipPlacement="left" icon="phone" class="m-2"></nb-icon>
-                  {{patientProfile?.cellNumber}}</div>
-                <div><nb-icon nbTooltip="Email" nbTooltipPlacement="left" icon="email-outline"
-                    class="m-2"></nb-icon>{{patientProfile?.profileEmail}}</div>
+                  {{patientProfile?.cellNumber || patientProfile?.phoneNumber}}</div>
+                <div ><nb-icon nbTooltip="Email" nbTooltipPlacement="left" icon="email-outline"
+                    class="m-2"></nb-icon>{{patientProfile?.profileEmail || patientProfile?.email}}</div>
                 <div [ngSwitch]="patientProfile?.gender">
                   <div *ngSwitchCase="0"><i nbTooltip="Gender" nbTooltipPlacement="left"
                       class="fa-solid fa-venus-mars m-2"></i>Male</div>

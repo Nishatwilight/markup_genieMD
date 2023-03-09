@@ -1,19 +1,34 @@
 <p (click)="historyFun()">history works!</p>
-<nb-card>
-    <nb-card-header class="ms-auto">
+<nb-card size="giant">
+  <nb-card-body>
+    <div class="d-flex justify-content-end my-2">
       <nb-actions size="medium">
-        <nb-action  icon="plus-circle-outline"></nb-action>
-        <nb-action  icon="refresh-outline"></nb-action>
+        <nb-action icon="plus-circle-outline"></nb-action>
+        <nb-action icon="refresh-outline"></nb-action>
       </nb-actions>
-    </nb-card-header>
-    <nb-card-body>
-        <ngx-datatable class="material" [rows]="row" columnMode="force" [headerHeight]="50" [footerHeight]="0"
-        [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
-        <ngx-datatable-column name="Date & Time" prop="audittime">
-            <ng-template let-value="value" ngx-datatable-cell-template> 
-                
-            </ng-template>
-        </ngx-datatable-column>
-        </ngx-datatable>
-    </nb-card-body>
-  </nb-card>
+    </div>
+    <ngx-datatable class="material h-100" [rows]="row" columnMode="force" [headerHeight]="50" [footerHeight]="0"
+      [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
+      <ngx-datatable-column name="Date & Time" prop="audittime">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{getDateValue(value)}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name" prop="name">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Duration" prop="duration">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{getDuration(value)}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Notes" prop="description">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </nb-card-body>
+</nb-card>
