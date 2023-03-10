@@ -1,5 +1,5 @@
 <p (click)="assessmentFun()" >assessment works!</p>
-<nb-card size="giant">
+<nb-card size="giant" class=" mb-0">
     <nb-card-body>
       <ngx-datatable class="material h-100" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0" 
       [rowHeight]="50" [scrollbarV]="true" >
@@ -10,12 +10,12 @@
         </ngx-datatable-column>
         <ngx-datatable-column name=" Stared "  prop="created" [flexGrow]="3">
           <ng-template let-value="value" ngx-datatable-cell-template>
-            {{getValue(value) }}
+            {{getValue(value)  || '-' }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name=" Processed "  prop="processed" [flexGrow]="3">
           <ng-template let-value="value" ngx-datatable-cell-template>
-            {{getValue(value) }}
+            {{getValue(value)  || '-' }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Assessment Name" prop="assessmentName">

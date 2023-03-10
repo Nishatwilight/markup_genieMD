@@ -14,7 +14,7 @@ export class AlertsComponent {
   patientInfo: any;
   rows: any;
   items = [{ title: 'Clear All Warnings' }, { title: 'Clear All Alerts' }];
-
+  alertStatus: any;
 
   @Input()
   get gettingPatientDetails(){
@@ -37,8 +37,22 @@ export class AlertsComponent {
       this.rows = data.list;
       console.log('the getAlertApi API', data);
       console.log('The getAlertApi API data.list', this.rows);  
+      this.rows.map((value: any) =>{
+        console.log("The get AlertAPI data.list MAP value", value);   
+        this.alertStatus = value.alertStatus
+      })
       this.cd.detectChanges();
     })
+  }
+  getAlertStatus(value: any){
+    // console.log('*************', value);
+    switch(value){
+      case 0: value = 'New'; break;
+      case 1: value = ' In Process'; break;
+      case 2: value = 'Resolved'; break;
+      default: value = "-";
+    }
+    return value;
   }
   getDateValue(value: any){
     let date_value = moment(value).format('YYYY-MM-DD')

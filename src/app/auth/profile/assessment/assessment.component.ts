@@ -11,6 +11,7 @@ export class AssessmentComponent implements OnInit {
   patientProfile: any;
   PatientDetails: any;
   rows: any;
+  rowss:any
   
   @Input()
    get gettingPatientDetails(){
@@ -52,7 +53,9 @@ assessmentFun(){
       }
       return row;
     })
-    this.rows = [...patient_details];
+    this.rowss = [...patient_details];
+    console.log('the value of the rows data in assessment component', this.rowss);
+    
     this.cd.detectChanges();
 
   })

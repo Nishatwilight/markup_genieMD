@@ -18,27 +18,27 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Created Date" prop="alertTime">
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    <span>{{getDateValue(value)}}</span>
+                    <span>{{getDateValue(value)  || '-'}}</span>
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Status" prop="alertStatus" [maxWidth]="100">
+            <ngx-datatable-column name="Status" prop="alertStatus" [maxWidth]="100" >
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{ value }}   
+                    <span [ngClass]="{'text-success': value == 2 , 'text-danger': value == 1, 'text-warning': value == 0 }">{{getAlertStatus(value) || '-'}}</span>  
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Resolved Date" prop="alertResolved">
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    <span>{{getDateValue(value)}}</span>
+                    <span>{{getDateValue(value)  || '-'}}</span>
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Notes" prop="alertData" [maxWidth]="100">
                 <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-                    <a (click)="viewNotes(row)">view Notes</a>
+                    <a innerHTML (click)="viewNotes(row)">view Notes</a>
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Reading" prop="alertData">
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{ value }}
+                    {{ value || '   -' }}
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Rule" prop="rule">
@@ -46,9 +46,13 @@
                     {{ value }}
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Action" prop="">
+            <ngx-datatable-column name="Action" prop="alertStatus">
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{ value }}
+                    <button nbButton outline
+                    [disabled]="alertStatus.alertStatus === 2"
+                    [status]="alertStatus.alertStatus === 0 ? 'warning': alertStatus.alertStatus === 1 ? 'danger' : 'success'"
+                    [size]="'tiny'">{{alertStatus.alertStatus === 0 ?'Attend': alertStatus.alertStatus === 1 ? 'Resolve' :
+                    'Resolved'}}</button>
                 </ng-template>
             </ngx-datatable-column>
         </ngx-datatable>

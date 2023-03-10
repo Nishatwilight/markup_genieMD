@@ -15,6 +15,13 @@ import { AlertsComponent } from './profile/alerts/alerts.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AlertNotesComponent } from './profile/alerts/alert-notes/alert-notes.component';
 import { NgChartjsModule } from 'ng-chartjs';
+import * as moment from 'moment';
+import { LandingComponent } from './landing/landing.component';
+import { SnapshotComponent } from './profile/snapshot/snapshot.component';
+// import momentDurationFormatSetup from "moment-duration-format";
+
+// momentDurationFormatSetup(moment);
+
 
 
 
@@ -32,7 +39,8 @@ import { NgChartjsModule } from 'ng-chartjs';
     TaskComponent,
     AlertsComponent,
     AlertNotesComponent,
-    // SnapshotComponent,
+    LandingComponent,
+    SnapshotComponent,
 
   ],
   imports: [

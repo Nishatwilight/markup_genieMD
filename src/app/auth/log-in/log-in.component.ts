@@ -52,16 +52,16 @@ constructor(
 
       let userID = data.userID;
       console.log('Log the time is given as2:', new Date().getMilliseconds());
+      this.routing.navigate([`/auth/profile/${userID}`]);
 
-      if (userID){
-        this.authService.getProfiles(userID).subscribe(data =>{
-          console.log("Log userID",userID);  
-        console.log("Log getProfilessssssssssss", data); 
-        this.authService.profile = data;
-        this.routing.navigate([`/auth/profile/${userID}`]);
+      // if (userID){
+      //   this.authService.getProfiles(userID).subscribe(data =>{
+      //     console.log("Log userID",userID);  
+      //   console.log("Log getProfilessssssssssss", data); 
+      //   this.authService.profile = data;
 
-      })
-      }
+      // })
+      // }
     })
     console.log('Log the time is given as3:', new Date().getMilliseconds());
   }

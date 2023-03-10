@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbThemeService } from '@nebular/theme';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
@@ -60,7 +61,8 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private dialogService: NbDialogService,
     private careService: CareManagerService,
-    private cs: ClinicService) 
+    private cs: ClinicService,
+    private activatedRoute: ActivatedRoute) 
   {
     this.vitalList = this.cs.getVitals();
     console.log("this.vitalList", this.vitalList);

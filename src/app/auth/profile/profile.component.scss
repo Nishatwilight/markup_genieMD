@@ -27,11 +27,7 @@
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
 }
-.display{
-    display: flex;
-    justify-content: flex-end;
-    
-}
+
 input[type="search"][value="dark"]::-webkit-search-cancel-button {
     background:
      linear-gradient(135deg, transparent 0%,transparent 43%,#fff 45%,#fff 55%,transparent 57%,transparent 100%) ;

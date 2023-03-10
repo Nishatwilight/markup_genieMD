@@ -19,7 +19,11 @@ export class AuthService {
     return this.http.post(`Email/SignIn/`, payload )          
   }
   getProfiles(id: any): Observable<any>  {
-    return this.http.get(`Profile/${id}`)
+    return this.http.get(`Profile/${id}`).pipe(
+      tap((result: any) =>{
+        this.profile = result
+      })
+    )
   }
   search(payload:any): Observable<any>{
     return this.http.post(`Clinics/SearchPatients2`, payload)

@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card size="giant" class=" mb-0">
     <nb-card-body>
        <nb-tabset fullWidth>
           <nb-tab tabTitle="Task"></nb-tab>
@@ -12,5 +12,23 @@
               <nb-icon  (click)="taskFun(1)" class=" my-auto mx-1" style="font-size: 2rem;" icon="arrow-ios-forward-outline"></nb-icon>
               <button nbButton status="info" (click)="taskFun()">Today</button>
           </div>
+          <ngx-datatable class="material h-100" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0" 
+          [rowHeight]="50" [scrollbarV]="true" >
+          <ngx-datatable-column name="Time" prop="startTime">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ getDateValue(value) }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Task" prop="startTime">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Task description" prop="details">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
+          </ngx-datatable>
     </nb-card-body>
  </nb-card>

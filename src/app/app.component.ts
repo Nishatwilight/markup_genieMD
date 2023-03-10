@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
+import { AuthService } from './shared/service/auth.service';
 
 
 @Component({
@@ -9,11 +10,13 @@ import { NbThemeService } from '@nebular/theme';
 })
 export class AppComponent {
   title = 'Task1';
-
-  constructor(private themeService: NbThemeService){
-    this.themeService.onThemeChange()
-    .subscribe((theme: any) => {
-      console.log(`Theme changed to ${theme.name}`);
-    });
+  profile: any;
+  constructor(public authService: AuthService ){
+    
+  }
+  ngOnInit() { 
+    this.profile = this.authService.profile;
+    
+    console.log('this.authService.profile APP component', this.profile);  
   }
 }

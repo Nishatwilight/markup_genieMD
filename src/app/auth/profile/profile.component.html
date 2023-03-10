@@ -1,8 +1,8 @@
-<nb-layout nbScrollable="false">
+<!-- <nb-layout nbScrollable="false">
   <nb-layout-header fixed id="headert">
     <nb-user size="large" class="m-5" [picture]="profile?.imageURL" name="{{profile?.firstName}} {{profile?.lastName}}">
     </nb-user>
-  </nb-layout-header>
+  </nb-layout-header> -->
   <nb-layout-column class="p-0 mt-0">
     <!-- layout row -->
     <div class="row mt-0">
@@ -385,168 +385,11 @@
             </div>
           </nb-card-body>
         </nb-card>
-        <!-- <div class="row" > -->
         <div class=" my-2 scroll pb-0">
           <nb-tabset (changeTab)="onChangeTab($event)">
             <nb-tab class="p-0" tabTitle="SNAPSHOT" responsive>
               <div class="p-0">
-                <nb-card size="giant">
-                  <nb-card-header>
-                    <div class="row">
-                      <div class="col">
-                        <p>Last vital measured:</p>
-                      </div>
-                      <div class="col display">
-                        <nb-icon class="mx-2" nbTooltip="Refresh List" nbTooltipPlacement="top" icon="refresh-outline"
-                          (click)="refreshData()"></nb-icon>
-                      </div>
-                    </div>
-                  </nb-card-header>
-                  <nb-card-body>
-                    <div class="row">
-                      <!-- clo-1 -->
-                      <div class="col-4">
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/BP.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>Blood Pressure</b></div>
-                            <div><b>{{bloodPressure || '----'}}</b></div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/weight.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>Weight</b></div>
-                            <div><b>{{weight || '---'}}</b></div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/ECG.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>ECG</b></div>
-                            <div><b>{{ecg || "---"}}</b></div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/lungs.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>Peak Flow</b></div>
-                            <div><b>{{peakFlow || "---"}}</b></div>
-                          </div>
-                        </div>
-
-                      </div>
-                      <!-- col-2 -->
-                      <div class="col-4">
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/SPO.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>SPO2</b></div>
-                            <div><b>{{spo2 || '---' }}</b></div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/Temperature.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>Temperature</b></div>
-                            <div><b>{{temperature || '---'}}</b></div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/PainLevel.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>Pain Level</b></div>
-                            <div><b>{{painLevel || "---"}}</b></div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/stability.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>Stability</b></div>
-                            <div><b>---</b></div>
-                          </div>
-                        </div>
-
-                      </div>
-                      <!-- col-3 -->
-                      <div class="col-4">
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/Gulcose.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>Gulcose</b></div>
-                            <div><b>{{ glucose || '---'}}</b></div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/height.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>Height</b></div>
-                            <div><b>{{height || "---"}}</b></div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-4">
-                            <div>
-                              <img src="assets/PHQ9.png" alt="BLOOD PRESSURE" width="70px">
-                            </div>
-                          </div>
-                          <div class="col-8">
-                            <div><b>PHQ9 Score</b></div>
-                            <div><b>{{ phq9 || "---" }}</b></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </nb-card-body>
-                </nb-card>
+                <app-snapshot [patientDetailss]="patientProfile"> </app-snapshot>
               </div>
             </nb-tab>
             <nb-tab class="p-0" tabTitle="VITALS" responsive>
@@ -571,5 +414,5 @@
         </div>
       </div>
     </div>
-  </nb-layout-column>
-</nb-layout>
+  <!-- </nb-layout-column>
+</nb-layout> -->

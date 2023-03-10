@@ -10,6 +10,8 @@ import * as moment from 'moment';
 export class TaskComponent {
 patientProfile: any;
   patientDetails: any;
+  rows: any;
+  rowsS: any;
   dateValue = moment(new Date()).format("YYYY-MM-DD")
 constructor(private careService: CareManagerService){}
 @Input()
@@ -40,7 +42,20 @@ taskFun(type?: any){
   "date": moment(new Date()).format('YYYY-MM-DD')
   }
   this.careService.getTaskForDateApi(taskDate).subscribe((data: any) =>{
-    console.log('this is getTask API', data);    
+    console.log('this is getTask API', data); 
+    this.rows = data.list
+    console.log("this value of get date API list******", this.rows);
+    const listData = this.rows.map((value: any) =>{
+      try {
+        value.parseExtraData = JSON.parse(value.list);
+      } catch(e) {
+        value.parseExtraData = {};
+      }
+      return value;
+    })
+    this.rowsS = [...listData];  
+    console.log("JSon parse list data@@@@@", this.rowsS);
+    
   })
   const payload = {
     "assignedDateTo": moment(new Date()).format('YYYY-MM-DD'),
@@ -56,5 +71,8 @@ taskFun(type?: any){
       console.log('this is completedTask API');     
     })
 }
-
+getDateValue(value: any){
+  const time = moment(value,  'HH:mm:ss').format("hh:mm A")
+  return time
+}
 }

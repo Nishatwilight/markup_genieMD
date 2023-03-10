@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NbContextMenuModule, NbDatepickerModule, NbLayoutModule, NbMenuModule, NbThemeModule } from '@nebular/theme';
+import { NbContextMenuModule, NbDatepickerModule, NbLayoutModule, NbMenuModule, NbThemeModule, NbUserModule } from '@nebular/theme';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +29,7 @@ import { NgChartjsModule } from 'ng-chartjs';
     ReactiveFormsModule,
     HttpClientModule,
     NbDatepickerModule.forRoot(),
-
+    NbUserModule,
     NbMenuModule.forRoot(),
     // NgChartjsModule.registerPlugin([...]),
 
