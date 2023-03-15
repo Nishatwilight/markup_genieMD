@@ -1,0 +1,43 @@
+:host ::ng-deep {
+    nb-sidebar.expanded {
+        width: 6rem !important;
+    }
+    nb-sidebar.collapsed {
+        display: none !important;
+    }
+    nb-sidebar .scrollable {
+        width: 6rem !important;
+        padding: 0 !important;
+    }
+    .main-container-fixed {
+        width: 6rem !important;
+    }
+    .scrollable .menu-item a {
+        display: grid !important;
+    }
+    .scrollable  .menu-item a {
+        text-align: center !important;
+    }
+    nb-menu .menu-item .menu-icon {
+        display: inline-block !important;
+        // width: 100% !important;
+        font-size: 24px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+    .scrollable  .menu-item a .menu-title {
+        font-weight: lighter;
+        font-size: 11px;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+    .left{
+        margin-top: 1.5rem !important;
+    }
+    .main-container{
+        margin-top: 1.5rem !important;
+    }
+}
+// :host nb-layout-header button:last-child {
+//     margin-left: auto !important;
+//   }

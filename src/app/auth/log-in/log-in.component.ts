@@ -52,7 +52,7 @@ constructor(
 
       let userID = data.userID;
       console.log('Log the time is given as2:', new Date().getMilliseconds());
-      this.routing.navigate([`/auth/profile/${userID}`]);
+      this.routing.navigate([`/provider/${userID}`]);
 
       // if (userID){
       //   this.authService.getProfiles(userID).subscribe(data =>{

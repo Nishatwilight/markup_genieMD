@@ -1,9 +1,5 @@
-<nb-layout>
-    <nb-layout-header fixed id="headert">
-    <nb-user size="large" class="m-5" [picture]="profile?.imageURL" name="{{profile?.firstName}} {{profile?.lastName}}">
-    </nb-user>
-  </nb-layout-header>
-  <nb-layout-column>
+<nb-layout >
+  <nb-layout-column class="ps-0">
       <router-outlet></router-outlet>
   </nb-layout-column>
 </nb-layout>

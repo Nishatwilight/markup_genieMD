@@ -52,4 +52,5 @@ export class CareManagerService {
   alertActionApi(id: any):Observable<any>{
     return this.http.get(`Alerts/AlertActions/${id}`, { headers: this.getHeaders() })
   }
+
 }

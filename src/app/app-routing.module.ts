@@ -13,6 +13,15 @@ const routes: Routes = [
     path:'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
+
+  {
+    path:'provider',
+    loadChildren: () => import('./provider/provider.module').then(m => m.ProviderModule)
+  },
+  // {
+  //   path:'encounter',
+  //   loadChildren: () => import('./encounter/encounter.module').then(m => m.EncounterModule)
+  // },
 ];
 
 @NgModule({

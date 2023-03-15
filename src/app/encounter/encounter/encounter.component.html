@@ -1,0 +1,58 @@
+<nb-card class="leftcard" size="giant">
+    <nb-card-body>
+        <div class=" d-flex justify-content-between row">
+            <button nbButton shape="rectangle" class="col mx-3 py-3 " status="primary"><nb-icon class="icon-fix mx-2"
+                    icon="clock-outline"></nb-icon>WAITING ROOM</button>
+            <button nbButton shape="rectangle" status="success" class="col mx-3 py-3"><nb-icon class="icon-fix mx-2"
+                    icon="calendar-outline"></nb-icon>SCHEDULED</button>
+            <button nbButton shape="rectangle" class="btn_async col  mx-3 "><nb-icon class="icon-fix mx-2"
+                    icon="flip-2-outline"></nb-icon>ASYNCHRONOUS</button>
+            <button nbButton shape="rectangle" status="danger" class="col  mx-3"><nb-icon class="icon-fix mx-2"
+                    icon="phone-call-outline"></nb-icon>CALL BACK</button>
+            <button nbButton shape="rectangle" status="warning" class="col  mx-3"><nb-icon class="icon-fix mx-2"
+                    icon="list-outline"></nb-icon>FOLLOW UP</button>
+            <button nbButton shape="rectangle" class="btn_comp col  mx-3"><nb-icon class="icon-fix mx-2"
+                    icon="checkmark-outline"></nb-icon>COMPLETED</button>
+        </div>
+        <div class="d-flex mt-5">
+            <div class="mx-2"> <input nbInput type="search" placeholder="Search"> </div>
+            <nb-actions class=""> <nb-action icon="refresh-outline"></nb-action> </nb-actions>
+        </div>
+        <div class="mt-5">
+            <ngx-datatable class="material h-100" [rows]="rows" columnMode="force" [headerHeight]="50"
+                [footerHeight]="0" [rowHeight]="50" [scrollbarV]="true">
+                <ngx-datatable-column name="Name" prop="parseExtraData" [flexGrow]="3">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Age" prop="parseExtraData" [flexGrow]="3">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Gender" prop="parseExtraData" [flexGrow]="3">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Assessment" prop="parseExtraData" [flexGrow]="3">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Reported" prop="parseExtraData" [flexGrow]="3">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Completed" prop="parseExtraData" [flexGrow]="3">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </nb-card-body>
+</nb-card>
+<!-- <nb-icon class="text-muted " icon="refresh-outline"></nb-icon> -->

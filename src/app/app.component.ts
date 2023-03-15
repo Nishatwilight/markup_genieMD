@@ -11,12 +11,10 @@ import { AuthService } from './shared/service/auth.service';
 export class AppComponent {
   title = 'Task1';
   profile: any;
-  constructor(public authService: AuthService ){
+  constructor(){
     
   }
   ngOnInit() { 
-    this.profile = this.authService.profile;
     
-    console.log('this.authService.profile APP component', this.profile);  
   }
 }

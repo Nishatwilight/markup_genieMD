@@ -1,11 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClinicService {
 
-  constructor() { }
+  constructor(private http: HttpClient,) { }
   getVitals() {
     return [
       {
@@ -117,5 +119,11 @@ export class ClinicService {
         "max": 1000
       }
     ]
+  }
+  getstarts(payload:any):(Observable<any>){
+    return this.http.post(`Encounters/GetStats`, payload)
+  }
+  encounterApi(payload:any):(Observable<any>){
+    return this.http.post(`Encounters/List/Encounters`, payload)
   }
 }
