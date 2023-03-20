@@ -14,17 +14,17 @@
           </div>
           <ngx-datatable class="material h-100" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0" 
           [rowHeight]="50" [scrollbarV]="true" >
-          <ngx-datatable-column name="Time" prop="startTime">
+          <ngx-datatable-column name="Time" prop="startTime" headerClass="text-center" cellClass="text-center">
             <ng-template let-value="value" ngx-datatable-cell-template>
               {{ getDateValue(value) }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Task" prop="startTime">
+          <ngx-datatable-column name="Task" prop="startTime" headerClass="text-center" cellClass="text-center">
             <ng-template let-value="value" ngx-datatable-cell-template>
               {{ value }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Task description" prop="details">
+          <ngx-datatable-column name="Task description" prop="details" headerClass="text-center" cellClass="text-center">
             <ng-template let-value="value" ngx-datatable-cell-template>
               {{ value }}
             </ng-template>

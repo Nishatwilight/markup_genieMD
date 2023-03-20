@@ -1,0 +1,41 @@
+<nb-card class="leftcard" size="giant">
+    <nb-card-header>
+        <div class="  row">
+            <div class="col-xl-2 col-lg-4 col-sm-6">
+                <button nbButton shape="rectangle" class="w-100"  status="primary" (click)="bucket('waitingroom')"><nb-icon
+                        class="icon-fix mx-2" icon="clock-outline"></nb-icon>WAITING ROOM
+                    <span class="mx-2">{{btnBadge('6')}}</span></button>
+            </div>
+            <div class="col-xl-2 col-lg-4 col-sm-6">
+                <button nbButton shape="rectangle" class="w-100" status="success" (click)="bucket('scheduled')"><nb-icon class="icon-fix mx-2"
+                        icon="calendar-outline"></nb-icon>SCHEDULED
+                    <span class="mx-2">{{btnBadge('1')}}</span></button>
+            </div>
+            <div class="col-xl-2 col-lg-4 col-sm-6">
+                <button nbButton shape="rectangle" class="btn_async w-100" (click)="bucket('asynchronous')"><nb-icon class="icon-fix mx-2"
+                        icon="flip-2-outline"></nb-icon>ASYNCHRONOUS
+                    <span class="mx-2">{{btnBadge('0')}}</span></button>
+            </div>
+            <div class="col-xl-2 col-lg-4 col-sm-6">
+                <button nbButton shape="rectangle" class="w-100" status="danger" (click)="bucket('callback')"><nb-icon class="icon-fix mx-2"
+                        icon="phone-call-outline"></nb-icon>CALL BACK
+                    <span class="mx-2">{{btnBadge('3')}}</span></button>
+            </div>
+            <div class="col-xl-2 col-lg-4 col-sm-6">
+                <button nbButton shape="rectangle" class="w-100" status="warning" (click)="bucket('followup')"><nb-icon class="icon-fix mx-2"
+                        icon="list-outline"></nb-icon>FOLLOW UP
+                    <span class="mx-2">{{btnBadge('4')}}</span></button>
+            </div>
+            <div class="col-xl-2 col-lg-4 col-sm-6">
+                <button nbButton shape="rectangle" class="btn_comp w-100" (click)="bucket('completed')"><nb-icon class="icon-fix mx-2"
+                        icon="checkmark-outline"></nb-icon>COMPLETED
+                    <span class="mx-2">{{btnBadge('7')}}</span></button>
+            </div>
+            <!-- <p (click)="getdate(1)"></p> -->
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <router-outlet>
+        </router-outlet>
+    </nb-card-body>
+</nb-card>

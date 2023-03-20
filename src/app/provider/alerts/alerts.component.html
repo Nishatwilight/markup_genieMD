@@ -10,38 +10,38 @@
         </div>
         <ngx-datatable class="material h-100" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0" 
             [rowHeight]="50" [scrollbarV]="true" >
-            <ngx-datatable-column name=" "  prop="alertValue">
+            <ngx-datatable-column name=" "  prop="alertValue" headerClass="text-center" cellClass="text-center">
                 <ng-template let-value="value" ngx-datatable-cell-template >
                     <nb-icon *ngIf="value == 1" status="danger"icon="alert-circle-outline"></nb-icon>
                     <nb-icon *ngIf="value == 2" status="success" icon="alert-circle-outline"></nb-icon>
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Created Date" prop="alertTime">
+            <ngx-datatable-column name="Created Date" prop="alertTime" headerClass="text-center" cellClass="text-center">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     <span>{{getDateValue(value)  || '-'}}</span>
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Status" prop="alertStatus" [maxWidth]="100" >
+            <ngx-datatable-column name="Status" prop="alertStatus" [maxWidth]="100" headerClass="text-center" cellClass="text-center">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     <span [ngClass]="{'text-success': value == 2 , 'text-danger': value == 1, 'text-warning': value == 0 }">{{getAlertStatus(value) || '-'}}</span>  
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Resolved Date" prop="alertResolved">
+            <ngx-datatable-column name="Resolved Date" prop="alertResolved" headerClass="text-center" cellClass="text-center">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     <span>{{getDateValue(value)  || '-'}}</span>
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Notes" prop="alertData" [maxWidth]="100">
+            <ngx-datatable-column name="Notes" prop="alertData" [maxWidth]="100" headerClass="text-center" cellClass="text-center">
                 <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
                     <a innerHTML (click)="viewNotes(row)">view Notes</a>
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Reading" prop="alertData">
+            <ngx-datatable-column name="Reading" prop="alertData" headerClass="text-center" cellClass="text-center">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     {{ value || '   -' }}
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Rule" prop="rule">
+            <ngx-datatable-column name="Rule" prop="rule" headerClass="text-center" cellClass="text-center">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     {{ value }}
                 </ng-template>

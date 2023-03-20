@@ -1,58 +1,126 @@
-<nb-card class="leftcard" size="giant">
-    <nb-card-body>
-        <div class=" d-flex justify-content-between row">
-            <button nbButton shape="rectangle" class="col mx-3 py-3 " status="primary"><nb-icon class="icon-fix mx-2"
-                    icon="clock-outline"></nb-icon>WAITING ROOM</button>
-            <button nbButton shape="rectangle" status="success" class="col mx-3 py-3"><nb-icon class="icon-fix mx-2"
-                    icon="calendar-outline"></nb-icon>SCHEDULED</button>
-            <button nbButton shape="rectangle" class="btn_async col  mx-3 "><nb-icon class="icon-fix mx-2"
-                    icon="flip-2-outline"></nb-icon>ASYNCHRONOUS</button>
-            <button nbButton shape="rectangle" status="danger" class="col  mx-3"><nb-icon class="icon-fix mx-2"
-                    icon="phone-call-outline"></nb-icon>CALL BACK</button>
-            <button nbButton shape="rectangle" status="warning" class="col  mx-3"><nb-icon class="icon-fix mx-2"
-                    icon="list-outline"></nb-icon>FOLLOW UP</button>
-            <button nbButton shape="rectangle" class="btn_comp col  mx-3"><nb-icon class="icon-fix mx-2"
-                    icon="checkmark-outline"></nb-icon>COMPLETED</button>
+<nb-card-body class="h-100">
+    <div class="d-flex"
+        *ngIf="this.encounterBuckets === 'waitingroom' || this.encounterBuckets === 'asynchronous' || this.encounterBuckets === 'callback' || this.encounterBuckets === 'followup' || this.encounterBuckets === 'completed'">
+        <input nbInput type="search" placeholder="Search" [(ngModel)]="searchValues">
+        <nb-actions class="mx-2"> <nb-action class="mt-2" icon="refresh-outline"></nb-action> </nb-actions>
+    </div>
+    <div class="d-flex justify-content-between aaaaaaaa " *ngIf="this.encounterBuckets === 'scheduled'">
+        <div class="d-flex">
+            <div>
+                <input nbInput type="search" placeholder="Search">
+            </div>
+            <div>
+                <nb-actions class="mx-2"> <nb-action class="mt-2" icon="refresh-outline"></nb-action> </nb-actions>
+            </div>
+            <div>
+                <button class="mx-2" nbButton outline status="success" (click)="getdate(1)">TODAY</button>
+            </div>
+            <div>
+                <button class="mx-2" nbButton outline status="success" (click)="getdate(7)">THIS WEEK </button>
+            </div>
+            <div>
+                <button class="mx-2" nbButton outline status="success" (click)="getdate(31)">THIS MONTH</button>
+            </div>
+            <div class="mb-5 aaaaaaaa">
+                <nb-icon class=" my-auto mx-1 mb-1" style="font-size: 3rem;" icon="arrow-ios-back-outline"
+                    (click)="getdate(-1)"></nb-icon>
+            </div>
+            <div class="h-50">
+                <input nbInput placeholder="Date" class="h-30 text-center" [nbDatepicker]="datePicker"
+                    [(ngModel)]="dateValue" (click)="getdate(0)">
+                <nb-datepicker #datePicker></nb-datepicker>
+            </div>
+            <div class="aaaaaaaa">
+                <nb-icon class=" my-auto mx-1  mb-1" style="font-size: 3rem;" icon="arrow-ios-forward-outline"
+                    (click)="getdate(1)"></nb-icon>
+            </div>
         </div>
-        <div class="d-flex mt-5">
-            <div class="mx-2"> <input nbInput type="search" placeholder="Search"> </div>
-            <nb-actions class=""> <nb-action icon="refresh-outline"></nb-action> </nb-actions>
+        <div class="d-flex">
+            <div>
+                <button nbButton status="primary" class="me-4">GROUP MEETING</button>
+            </div>
+            <div>
+                <button nbButton status="primary">SCHEDULED APPOINTMENT</button>
+            </div>
         </div>
-        <div class="mt-5">
-            <ngx-datatable class="material h-100" [rows]="rows" columnMode="force" [headerHeight]="50"
-                [footerHeight]="0" [rowHeight]="50" [scrollbarV]="true">
-                <ngx-datatable-column name="Name" prop="parseExtraData" [flexGrow]="3">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{value}}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Age" prop="parseExtraData" [flexGrow]="3">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{value}}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Gender" prop="parseExtraData" [flexGrow]="3">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{value}}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Assessment" prop="parseExtraData" [flexGrow]="3">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{value}}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Reported" prop="parseExtraData" [flexGrow]="3">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{value}}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Completed" prop="parseExtraData" [flexGrow]="3">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{value}}
-                    </ng-template>
-                </ngx-datatable-column>
-            </ngx-datatable>
-        </div>
-    </nb-card-body>
-</nb-card>
-<!-- <nb-icon class="text-muted " icon="refresh-outline"></nb-icon> -->
+    </div>
+    <ngx-datatable class="material h-100 mt-5" [rows]="rows" columnMode="force" [headerHeight]="50" [rowHeight]="50"
+        [scrollbarV]="true">
+        <ngx-datatable-column name="Name" prop="parseExtraData" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value.firstName}} {{value.lastName}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Age" prop="parseExtraData" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value.age}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Gender" prop="parseExtraData" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                <div [ngSwitch]="value?.gender">
+                    <div *ngSwitchCase="0">Male</div>
+                    <div *ngSwitchCase="1">Female</div>
+                    <div *ngSwitchDefault>Others</div>
+                </div>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Assessment" prop="assessmentName" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Site" prop="parseExtraData" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center" *ngIf="this.encounterBuckets === 'waitingroom'">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value.ClinicName}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Reported" prop="created" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{getvalue(value)}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Scheduled" prop="parseExtraData" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center" *ngIf="this.encounterBuckets === 'scheduled'">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value.ClinicName}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Action" prop="" [flexGrow]="3" headerClass="text-center" cellClass="text-center"
+            *ngIf="this.encounterBuckets === 'scheduled'">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Status" prop="status" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center"
+            *ngIf="this.encounterBuckets ===  'asynchronous' ||this.encounterBuckets === 'callback'">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                <div [ngSwitch]="value">
+                    <div *ngSwitchCase="0">Pending Review</div>
+                    <div *ngSwitchCase="1">In Review</div>
+                    <div *ngSwitchCase="2">Processed</div>
+                    <div *ngSwitchDefault>-</div>
+                </div>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Marked follow up" prop="processed" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center" *ngIf="this.encounterBuckets === 'followup'">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{getvalue(value)}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Completed" prop="Processed" [flexGrow]="3" headerClass="text-center"
+            cellClass="text-center" *ngIf="this.encounterBuckets === 'completed'">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{getvalue(value)}}
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</nb-card-body>

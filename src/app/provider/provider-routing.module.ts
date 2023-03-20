@@ -28,7 +28,7 @@ const routes: Routes = [
       },
       {
 
-        path: ':id/encounter',
+        path: ':id/dashboard',
         loadChildren: () => import('../encounter/encounter.module').then(m => m.EncounterModule),
         resolve: {
           profileData: ProfileResolver

@@ -3,42 +3,42 @@
     <nb-card-body>
       <ngx-datatable class="material h-100" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0" 
       [rowHeight]="50" [scrollbarV]="true" >
-        <ngx-datatable-column name=" "  prop="parseExtraData" [flexGrow]="3" >
+        <ngx-datatable-column name=" "  prop="parseExtraData" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
           <ng-template let-value="value" ngx-datatable-cell-template>
             <nb-user size="medium" class="" [picture]="value?.profileImageUrl " onlyPicture></nb-user>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name=" Stared "  prop="created" [flexGrow]="3">
+        <ngx-datatable-column name=" Stared "  prop="created" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{getValue(value)  || '-' }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name=" Processed "  prop="processed" [flexGrow]="3">
+        <ngx-datatable-column name=" Processed "  prop="processed" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{getValue(value)  || '-' }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Assessment Name" prop="assessmentName">
+        <ngx-datatable-column name="Assessment Name" prop="assessmentName" headerClass="text-center" cellClass="text-center">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="State"  prop="state">
+        <ngx-datatable-column name="State"  prop="state" headerClass="text-center" cellClass="text-center">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Interview"  prop="interview">
+        <ngx-datatable-column name="Interview"  prop="interview" headerClass="text-center" cellClass="text-center">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Assigned To" prop="providerID">
+        <ngx-datatable-column name="Assigned To" prop="providerID" headerClass="text-center" cellClass="text-center">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Action" prop="address.state">
+        <ngx-datatable-column name="Action" prop="address.state"headerClass="text-center" cellClass="text-center">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value }}
           </ng-template>

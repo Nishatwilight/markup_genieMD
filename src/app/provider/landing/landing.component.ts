@@ -27,7 +27,7 @@ export class LandingComponent {
       {
         title: 'Encounters',
         icon: 'book-outline',  
-        link: `/provider/${this.profile.userID}/encounter/encounters`,
+        link: `/provider/${this.profile.userID}/dashboard/encounters/waitingroom`,
       },
     
       {

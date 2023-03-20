@@ -9,22 +9,22 @@
     </div>
     <ngx-datatable class="material h-100" [rows]="row" columnMode="force" [headerHeight]="50" [footerHeight]="0"
       [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
-      <ngx-datatable-column name="Date & Time" prop="audittime">
+      <ngx-datatable-column name="Date & Time" prop="audittime" headerClass="text-center" cellClass="text-center">
         <ng-template let-value="value" ngx-datatable-cell-template>
           {{getDateValue(value)}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Name" prop="name">
+      <ngx-datatable-column name="Name" prop="name" headerClass="text-center" cellClass="text-center">
         <ng-template let-value="value" ngx-datatable-cell-template>
           {{value}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Duration" prop="duration">
+      <ngx-datatable-column name="Duration" prop="duration" headerClass="text-center" cellClass="text-center">
         <ng-template let-value="value" ngx-datatable-cell-template>
           {{getDuration(value)}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Notes" prop="description">
+      <ngx-datatable-column name="Notes" prop="description" headerClass="text-center" cellClass="text-center">
         <ng-template let-value="value" ngx-datatable-cell-template>
           {{value}}
         </ng-template>
