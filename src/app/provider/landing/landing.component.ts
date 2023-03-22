@@ -34,6 +34,8 @@ export class LandingComponent {
         title: 'Patients',
         icon: 'people-outline',
         link: `/provider/${this.profile.userID}`
+        // link: `/provider/${this.profile.userID}/patient`,
+
       },
       {
         title: 'Chat',
@@ -69,13 +71,11 @@ export class LandingComponent {
   
  
   toggle() {
-    console.log("ggggggggggggggggggggggggg");
+    console.log("Toggle works");
     this.sidebarService.toggle(false, 'left');
   }
 
   route() {
-    
-    // this.routing.navigate(['provider/encounter/encounters']);
-    // this.routing.navigateByUrl('provider/encounter')
+    this.routing.navigate([`provider/${this.profile.userID}/dashboard/patient`]);
   }
 }

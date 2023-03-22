@@ -15,6 +15,7 @@ import { HistoryComponent } from './history/history.component';
 import { TaskComponent } from './task/task.component';
 import { VitalsComponent } from './vitals/vitals.component';
 import { ProviderRoutingModule } from './provider-routing.module';
+import { PatientComponent } from './patient/patient.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ProviderRoutingModule } from './provider-routing.module';
     HistoryComponent,
     TaskComponent,
     VitalsComponent,
+    PatientComponent,
     
   ],
   imports: [

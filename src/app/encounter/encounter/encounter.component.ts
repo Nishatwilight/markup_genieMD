@@ -25,8 +25,8 @@ export class EncounterComponent {
 
   constructor(private authService: AuthService,
     public cs: ClinicService,
-    // public routing: Router,
-    private route: ActivatedRoute,
+    public routing: Router,
+    public route: ActivatedRoute,
   ) {
     this.profile = this.authService.profile;
     this.route.params.subscribe((params: any) => {
@@ -194,5 +194,9 @@ export class EncounterComponent {
     }
     return dateTime
   }
-
+  onActivate(event: any) {
+    if (event.type === 'click') {
+      this.routing.navigate(['provider', this.profile.userID, 'dashboard', 'encounters', event.row.encounterID])
+    }
+  }
 }

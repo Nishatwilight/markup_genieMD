@@ -45,7 +45,7 @@
         </div>
     </div>
     <ngx-datatable class="material h-100 mt-5" [rows]="rows" columnMode="force" [headerHeight]="50" [rowHeight]="50"
-        [scrollbarV]="true">
+        [scrollbarV]="true"  (activate)="onActivate($event)">
         <ngx-datatable-column name="Name" prop="parseExtraData" [flexGrow]="3" headerClass="text-center"
             cellClass="text-center">
             <ng-template let-value="value" ngx-datatable-cell-template>

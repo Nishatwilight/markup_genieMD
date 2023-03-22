@@ -61,7 +61,8 @@ export class ProfileComponent implements OnInit {
     private dialogService: NbDialogService,
     private careService: CareManagerService,
     private cs: ClinicService,
-    private activatedRoute: ActivatedRoute) 
+    private activatedRoute: ActivatedRoute
+    ) 
   {
     this.vitalList = this.cs.getVitals();
     console.log("this.vitalList", this.vitalList);

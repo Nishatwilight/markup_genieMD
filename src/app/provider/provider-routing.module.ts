@@ -1,11 +1,9 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EncounterComponent } from '../encounter/encounter/encounter.component';
-// import { DispayResolver } from '../shared/resolver/dispay.resolver';
 import { ProfileResolver } from '../shared/resolver/profile.resolver';
 import { LandingComponent } from './landing/landing.component';
+import { PatientComponent } from './patient/patient.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SnapshotComponent } from './snapshot/snapshot.component';
 
 const routes: Routes = [
   {
@@ -20,12 +18,13 @@ const routes: Routes = [
         }
       },
       {
-        path: 'snapshot',
-        component: SnapshotComponent,
-        // resolve: {
-        //   profileData: ProfileResolver
-        // }
+        path: ':id/dashboard/patient',
+        component: PatientComponent,
+        resolve: {
+          profileData: ProfileResolver
+        }
       },
+
       {
 
         path: ':id/dashboard',

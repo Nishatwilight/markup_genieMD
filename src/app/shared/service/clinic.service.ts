@@ -126,4 +126,7 @@ export class ClinicService {
   encounterApi(payload:any):(Observable<any>){
     return this.http.post(`Encounters/List/Encounters`, payload)
   }
+  encountersIframe(payload:any):Observable<any>{
+    return this.http.get(`Encounters/Encounter/${payload.userID}/${payload.encounterID}`)
+  }
 }

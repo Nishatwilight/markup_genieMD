@@ -52,5 +52,9 @@ export class CareManagerService {
   alertActionApi(id: any):Observable<any>{
     return this.http.get(`Alerts/AlertActions/${id}`, { headers: this.getHeaders() })
   }
+  patientList(payload: any):Observable<any>{
+    return this.http.post(`Pateint/PatientsList`, payload)
+  }
+  
 
 }

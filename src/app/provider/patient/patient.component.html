@@ -1,0 +1,79 @@
+<nb-card>
+    <nb-card-header>
+        <h2>Patient {{(allData.count)}}</h2>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-tabset>
+            <nb-tab tabTitle="DEMOGRAPHICS">
+              <p>DEMOGRAPHICS</p>
+            </nb-tab>
+            <nb-tab tabTitle="ACTIVITY">
+              <p>ACTIVITY</p>
+            </nb-tab>
+          </nb-tabset>
+          <div class="d-flex  align-items-baseline">
+            <input type="search" class="me-2" nbInput placeholder="Search With Name">
+            <nb-icon icon="funnel-outline" pack="eva" class="mx-4 fs-2"></nb-icon>
+            <button nbButton outline status="primary" class="ms-2">CREATE NEW PATIENT</button>
+          </div>
+          <ngx-datatable class="material h-100 mt-5" [rows]="rows" columnMode="force" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true">
+            <ngx-datatable-column name="Name" prop="name" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value.firstName}} {{value.lastName}}
+                </ng-template>
+            </ngx-datatable-column>
+          <ngx-datatable-column name="Consent" prop="consent" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                  <div [ngSwitch]="value?.consent">
+                    <div *ngSwitch=""></div>
+                  </div>
+              </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Email" prop="email" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value || '-'}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="DOB" prop="dob" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{getDate(value, 1)}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Monitors" prop="monitors" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value || '-'}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Assigned Care Manager" prop="careManagers" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value || '-'}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Onboarded Date" prop="enrollmentDate" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{getDate(value, 2)}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Provider" prop="providers" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value || '-'}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Conditions" prop="morbidities" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value || '-'}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Preferred Language" prop="language" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                <span>English</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Action" prop="enrollmentDate" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value || '-'}}
+            </ng-template>
+        </ngx-datatable-column>
+          </ngx-datatable>
+    </nb-card-body>
+</nb-card>
