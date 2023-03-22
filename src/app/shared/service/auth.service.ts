@@ -21,7 +21,7 @@ export class AuthService {
   getProfiles(id: any): Observable<any>  {
     return this.http.get(`Profile/${id}`).pipe(
       tap((result: any) =>{
-        this.profile = result
+        this.profile = result // doubt
       })
     )
   }
