@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 import { ClinicService } from 'src/app/shared/service/clinic.service';
 
@@ -13,7 +14,7 @@ export class SnapshotComponent {
   spo2 = '';
   glucose = '';
   weight = '';
-  temperature ='';
+  temperature = '';
   ecg = '';
   painLevel = '';
   height = '';
@@ -23,44 +24,34 @@ export class SnapshotComponent {
   vitalList: any;
   details: any;
   patientDetails: any;
-constructor( 
-  private cd: ChangeDetectorRef,
-  private careService: CareManagerService,
-  private cs: ClinicService,
+  patientUserId: any;
+  constructor(
+    private cd: ChangeDetectorRef,
+    private careService: CareManagerService,
+    private cs: ClinicService,
+    private activatedRoute: ActivatedRoute
 
-  ){
+  ) {
     this.vitalList = this.cs.getVitals();
+    this.activatedRoute.queryParamMap.subscribe((queryParams) => {
+      console.log('activatedRoute.queryParamMap', queryParams);
+      this.patientUserId = queryParams.get('patientUserId')
+      this.getDisplayProfiless(this.patientUserId)
+    })
   }
 
-@Input()
-get patientDetailss(){
-  return this.details
-}
-set patientDetailss(value: any){
-  if (value){
-    console.log('this is SnapShot PatientDetails', value);
-    this.getDisplayProfiless(value)
-    this.patientVitalList = value
-    
-  }
-}
 
-
-getDisplayProfiless(data: any){
-  console.log("-----------------------", data);
-  this.careService.displayProfile(data.patientID).subscribe((res: any) => {
-    this.patientProfile = res;
-    console.log("The displayProfile API", res);
-    this.careService.snapshot(res.userID).subscribe((data: any) => {
+  getDisplayProfiless(userID: any) {
+    this.careService.snapshot(userID).subscribe((data: any) => {
       console.log("The SnapShort API", data);
       this.patientVitalList = data.vitalsList;
       console.log('this is patientVitallist VARIABLE', this.patientVitalList);
       const patientVitalList = this.patientVitalList.map((list: any) => {
         console.log("list - C", list);
-        
+
         const vitalName = this.vitalList.find((datas: any) => {
           console.log("This is VitalName VARIABLE", datas);
-          
+
           if (datas.vitalType === list.vitalTypeID) {
             return data;
           } else {
@@ -69,7 +60,7 @@ getDisplayProfiless(data: any){
         });
         list.vitalName = vitalName?.name;
         console.log("list.VitalNAME VARIABLE Value", list.vitalName);
-        
+
         try {
           list.vitalData = JSON.parse(list.vitalData);
           console.log("list.VitalDATA VARIABLE value", list.vitalData);
@@ -80,34 +71,34 @@ getDisplayProfiless(data: any){
         }
         return list;
       })
-      
+
       this.patientVitalList = patientVitalList;
-      console.log("this.patientVitalList VARIABLE Value", this.patientVitalList);  
+      console.log("this.patientVitalList VARIABLE Value", this.patientVitalList);
       this.aranageVitals()
     })
-  })
-}
-aranageVitals() {
 
-  this.patientVitalList.map((list: any) => {
-    if (list.vitalName === "Blood Pressure") {
-      const payload = {
-        name: 'Blood Pressure',
-        time: list.vitalDate,
-        value: list.vitalData.S + '/' + list.vitalData.D + '-' + list.vitalData.R
-      };
-      this.bloodPressure = payload.value;
-      this.cd.detectChanges();      
-    }
-      else if(list.vitalName === "SPO2"){
+  }
+  aranageVitals() {
+
+    this.patientVitalList.map((list: any) => {
+      if (list.vitalName === "Blood Pressure") {
+        const payload = {
+          name: 'Blood Pressure',
+          time: list.vitalDate,
+          value: list.vitalData.S + '/' + list.vitalData.D + '-' + list.vitalData.R
+        };
+        this.bloodPressure = payload.value;
+        this.cd.detectChanges();
+      }
+      else if (list.vitalName === "SPO2") {
         const payload = {
           name: 'SPO2',
-          value:list.vitalData.O + ' %' + ' - ' +list.vitalData.R
+          value: list.vitalData.O + ' %' + ' - ' + list.vitalData.R
         };
         this.spo2 = payload.value;
         this.cd.detectChanges();
       }
-      else if(list.vitalName === 'Glucose'){
+      else if (list.vitalName === 'Glucose') {
         const payload = {
           name: 'Glucose',
           value: list.vitalData.V + list.vitalData.U
@@ -115,7 +106,7 @@ aranageVitals() {
         this.glucose = payload.value;
         this.cd.detectChanges()
       }
-      else if (list.vitalName === "Weight"){
+      else if (list.vitalName === "Weight") {
         const payload = {
           name: 'Weight',
           value: list.vitalData.W + list.vitalData.U
@@ -123,7 +114,7 @@ aranageVitals() {
         this.weight = payload.value;
         this.cd.detectChanges()
       }
-      else if(list.vitalName === 'Temperature'){
+      else if (list.vitalName === 'Temperature') {
         const payload = {
           name: 'Temperature',
           value: list.vitalData.T
@@ -131,7 +122,7 @@ aranageVitals() {
         this.temperature = payload.value;
         this.cd.detectChanges()
       }
-      else if(list.vitalName === 'ECG'){
+      else if (list.vitalName === 'ECG') {
         const payload = {
           name: 'ECG',
           value: list.vitalData.T
@@ -139,7 +130,7 @@ aranageVitals() {
         this.ecg = payload.value;
         this.cd.detectChanges()
       }
-      else if(list.vitalName === "Pain Level"){
+      else if (list.vitalName === "Pain Level") {
         const payload = {
           name: "Pain Level",
           value: list.vitalData.L
@@ -147,7 +138,7 @@ aranageVitals() {
         this.painLevel = payload.value;
         this.cd.detectChanges()
       }
-      else if(list.vitalName === "Peak Flow"){
+      else if (list.vitalName === "Peak Flow") {
         const payload = {
           name: "Peak Flow",
           value: list.vitalData.PEF + "- " + list.vitalData.FEV1 + " - " + list.vitalData.FVC
@@ -155,7 +146,7 @@ aranageVitals() {
         this.peakFlow = payload.value;
         this.cd.detectChanges()
       }
-      else if(list.vitalName === "Height"){
+      else if (list.vitalName === "Height") {
         const payload = {
           name: "Height",
           value: list.vitalData.H
@@ -163,7 +154,7 @@ aranageVitals() {
         this.height = payload.value;
         this.cd.detectChanges()
       }
-      else if(list.vitalName === "PHQ9"){
+      else if (list.vitalName === "PHQ9") {
         const payload = {
           name: "PHQ9",
           value: list.vitalData.Q
@@ -171,9 +162,9 @@ aranageVitals() {
         this.phq9 = payload.value;
         this.cd.detectChanges()
       }
-  });
-}
-refreshData(){
-//   this.getDisplayProfiless();
+    });
+  }
+  refreshData() {
+    //   this.getDisplayProfiless();
   }
 }

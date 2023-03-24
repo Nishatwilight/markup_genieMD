@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import * as moment from 'moment';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
@@ -15,25 +16,24 @@ export class AlertsComponent {
   rows: any;
   items = [{ title: 'Clear All Warnings' }, { title: 'Clear All Alerts' }];
   alertStatus: any;
+  patientid: any
 
-  @Input()
-  get gettingPatientDetails(){
-    return this.patientProfile
-  }
-  set gettingPatientDetails(value: any){
-    if(value){
-      this.patientInfo = value
-      console.log('the Alert Patient Details', this.patientInfo);   
-    }
-  }
   constructor(
     private careService: CareManagerService,
     private cd: ChangeDetectorRef,
-    private dialogService?: NbDialogService){}
+    private activateRoute: ActivatedRoute,
+    private dialogService?: NbDialogService,
+    ){
+      this.activateRoute.parent?.params.subscribe(params =>{
+        console.log('the value of Activated route', params);
+        this.patientid = params['patientID']    
+      })
+      this.alertsclick()
+    }
 
   alertsclick(){  
     console.log("The alertsclick FUNCTION", this.patientInfo);
-    this.careService.getAlertApi(this.patientInfo?.patientID).subscribe((data: any) =>{
+    this.careService.getAlertApi(this.patientid).subscribe((data: any) =>{
       this.rows = data.list;
       console.log('the getAlertApi API', data);
       console.log('The getAlertApi API data.list', this.rows);  

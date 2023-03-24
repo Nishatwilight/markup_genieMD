@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NbDialogService } from '@nebular/theme';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NbDialogService, NbRouteTab } from '@nebular/theme';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 import { ClinicService } from 'src/app/shared/service/clinic.service';
@@ -43,29 +43,50 @@ export class ProfileComponent implements OnInit {
   vitalList: any;
   patientVitalList: any = [];
   vitalsOriginal: any[] = [];
-  bloodPressure = '';
-  spo2 = '';
-  glucose = '';
-  weight = '';
-  temperature ='';
-  ecg = '';
-  painLevel = '';
-  height = '';
-  phq9 = '';
-  peakFlow = "";
-  // height = '';
-
+  patientid: any;
+  patientUserId: any
+  tabs: NbRouteTab[] =[
+    {
+      title: 'Snapshot',
+    },
+    {
+      title: 'Vitals',
+    },
+    {
+      title: 'Alerts',
+    },
+    {
+      title: 'Assessments',
+    },
+    {
+      title: 'Documents',
+    },
+    {
+      title: 'History',
+    },
+    {
+      title: 'Tasks',
+    },
+  ]
   constructor(
     private cd: ChangeDetectorRef, 
     private authService: AuthService,
     private dialogService: NbDialogService,
     private careService: CareManagerService,
     private cs: ClinicService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private routing: Router
     ) 
   {
     this.vitalList = this.cs.getVitals();
     console.log("this.vitalList", this.vitalList);
+    this.activatedRoute.params.subscribe(params =>{
+      console.log('Checking patient id is available',params);
+      this.patientid = params['patientID']
+      console.log('consoling the patienid', this.patientid);
+      this.getDisplayProfiless(this.patientid)
+    })
+
   }
 
   // getDisplayProfile(){
@@ -118,7 +139,7 @@ export class ProfileComponent implements OnInit {
       "count": 25, 
       "monitored": this.enrollValue,
       "morbidity": -1,
-      "providerID": this.profile?.profileId,
+      "providerID": '', //this.profile.userName
       "alarm": -1,
       "careManagerID": this.selectedItemNgModel,
       "term": this.patientSearch
@@ -147,11 +168,17 @@ export class ProfileComponent implements OnInit {
 
   getDisplayProfiless(data: any){
     console.log("-----------------------", data);
-    this.careService.displayProfile(data.patientID).subscribe((res: any) => {
+    this.careService.displayProfile(data).subscribe((res: any) => {
+      this.patientUserId = res.userID
       this.patientProfile = res;
       this.cd.detectChanges();
       console.log("The displayProfile API", res);
+     
     })
+  }
+  route(data: any){
+    this.routing.navigate(['provider', this.profile.userID,'dashboard','patient', data])
+
   }
   open(template: TemplateRef<any>) {
     // console.log("CARE PAYLOAD DATAASS",  this.users?.name, this.users?.providerID);  
@@ -206,17 +233,27 @@ export class ProfileComponent implements OnInit {
 
   refreshData(){
     window.location.reload();
-    // this.loading = true;
-    // this.cd.detectChanges();
-    // this.searchPatient();  
-    // if(this.searchvalues){
-    //   this.loading = false;
-  //   }
   }
   onChangeTab(event: any) {
-    if (event.tabTitle === 'VITALS') {
+    if (event.title === 'Snapshot') {
+      this.routing.navigate(['provider', this.profile.userID,'dashboard', 'patient', this.patientid, 'snapshot'], 
+      {
+        queryParams: {
+          patientUserId: this.patientUserId,
+        }
+      })
+    } else if(event.title === 'Vitals'){
+      this.routing.navigate(['provider', this.profile.userID,'dashboard', 'patient', this.patientid, 'vitals'])
+    } else if(event.title === 'Alerts'){
+      this.routing.navigate(['provider', this.profile.userID,'dashboard', 'patient', this.patientid, 'alerts'])
+    } else if(event.title === 'Assessments'){
+      this.routing.navigate(['provider', this.profile.userID,'dashboard', 'patient', this.patientid, 'encounter'])
+    } else if(event.title === 'Documents'){
+      this.routing.navigate(['provider', this.profile.userID,'dashboard', 'patient', this.patientid, 'document'])
+    } else if(event.title === 'History'){
+      this.routing.navigate(['provider', this.profile.userID,'dashboard', 'patient', this.patientid, 'history'])
+    } else if(event.title === 'Tasks'){
+      this.routing.navigate(['provider', this.profile.userID,'dashboard', 'patient', this.patientid, 'task'])
     }
-    if (event.tabTitle === 'ALERTS') {
-    }
-  }
+}
 }

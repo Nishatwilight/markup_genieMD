@@ -2,11 +2,13 @@
   <nb-layout-header fixed>
     <nb-icon icon="menu-2-outline" pack="eva" (click)="toggle()"></nb-icon>
     <nb-icon icon="home-outline" pack="eva" (click)="route()"></nb-icon>
+    <nb-icon icon="heart-outline" pack="eva" (click)="logout()"></nb-icon>
+
     <nb-user size="large" class="m-5" [picture]="profile?.imageURL"
       name="{{profile?.firstName}} {{profile?.lastName}}"></nb-user>
   </nb-layout-header>
   <nb-sidebar tag="left" fixed class="my-4 ">
-    <nb-menu [items]="items"></nb-menu>
+    <nb-menu  [items]="items"></nb-menu>
   </nb-sidebar>
   <nb-layout-column>
     <router-outlet></router-outlet>

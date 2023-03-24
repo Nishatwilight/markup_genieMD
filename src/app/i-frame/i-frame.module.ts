@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { IFrameRoutingModule } from './i-frame-routing.module';
 import { IframeComponent } from './iframe/iframe.component';
+import { NbCardModule, NbIconModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { IframeComponent } from './iframe/iframe.component';
   ],
   imports: [
     CommonModule,
-    IFrameRoutingModule
+    IFrameRoutingModule,
+    NbCardModule,
+    NbIconModule
   ]
 })
 export class IFrameModule { }

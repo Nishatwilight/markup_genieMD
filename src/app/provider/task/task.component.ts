@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 
@@ -13,16 +14,17 @@ export class TaskComponent {
     rows: any;
     rowsS: any;
     dateValue = moment(new Date()).format("YYYY-MM-DD")
-  constructor(private careService: CareManagerService){}
-  @Input()
-  get gettingPatientDetails(){
-    return this.patientProfile
+  patientid: any;
+  constructor(private careService: CareManagerService,
+    private activatedRoute: ActivatedRoute){
+      this.activatedRoute.parent?.params.subscribe(params=>{
+        console.log('activatedRoute', params);
+        this.patientid = params['patienid']
+        
+      })
+    this.taskFun()
   }
-  set gettingPatientDetails(value: any){
-  if(value){
-  this.patientDetails = value
-  }
-  }
+ 
   
   
   taskFun(type?: any){
@@ -38,7 +40,7 @@ export class TaskComponent {
     const taskDate = 
     {
     "byUsername":"",
-    "forUsername": this.patientDetails.patientID,
+    "forUsername": this.patientid,
     "date": moment(new Date()).format('YYYY-MM-DD')
     }
     this.careService.getTaskForDateApi(taskDate).subscribe((data: any) =>{
@@ -60,7 +62,7 @@ export class TaskComponent {
     const payload = {
       "assignedDateTo": moment(new Date()).format('YYYY-MM-DD'),
       "assignedDateFrom":moment(new Date()).format('YYYY-MM-DD'),
-      "completedBy":this.patientDetails.patientID,
+      "completedBy":this.patientid,
       "page":1,
       "count":200
     }

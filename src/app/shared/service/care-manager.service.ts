@@ -25,20 +25,28 @@ export class CareManagerService {
     return this.http.get(`Clinics/ClinicPatient/${this.authService.profile.userID}/${this.authService.profile.clinicID}/${patientID}`)
   }
   snapshot(user: any): Observable<any>{
-    return this.http.get(`Vitals/List/Top/${user}`)
+    return this.http.get(`Vitals/List/Top/${user}`, { headers: this.getHeaders() })
   }
   gettingViratalsApi(payload: any): Observable<any>{
+    console.log("%%%%", payload);
+
     return this.http.post(`Vitals/Search`,  payload, { headers: this.getHeaders() })
+    
   }
   getAlertApi(patientID: any): Observable<any>{
     return this.http.get(`Alerts/List/${this.authService.profile.clinicID}/${patientID}`, { headers: this.getHeaders() })
   }
   // Request URL: http://localhost:59097/ivisit.ComV5.00/resources/Vitals/Search
   getAssessmentApi(payload: any): Observable<any>{
+    console.log('getAssessmentApi', payload);
+
     return this.http.post(`Encounters/PatientEncounters`, payload)
+    
   }
   getDocumentsApi(userID: any): Observable<any>{
-    return this.http.get(`MedicalRecords/RecordsList/${userID}`)
+    console.log("document", userID);
+    return this.http.get(`MedicalRecords/RecordsList/${this.authService.profile.userID}`)
+    
   }
   getHistoryApi(patientID: any): Observable<any>{
     return this.http.get(`Audits/GetAudits/${this.authService.profile.userID}/${patientID}`)

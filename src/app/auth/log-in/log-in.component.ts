@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/service/auth.service';
+import { GuardService } from 'src/app/shared/service/guard.service';
 
 @Component({
   selector: 'app-log-in',
@@ -17,8 +18,12 @@ export class LogInComponent implements OnInit {
   loading = false;
   
 constructor(
+  
   private authService :AuthService,
-  public routing:Router){ 
+  public routing:Router,
+  public guardService: GuardService){ 
+    console.log('constructore called');
+
 }
   ngOnInit(): void {
     console.log('ngOnInit called');
@@ -27,6 +32,10 @@ constructor(
       password: new FormControl("" , [Validators.required, Validators.minLength(8)]), 
     });
     console.log("Final Value",this.registrationForm, this.registrationForm.get('password'))
+  }
+  ngOnChanges(){
+    console.log('ngOnChanges Called');
+    
   }
   getInputType() {
     if (!this.showPassword) {
@@ -38,11 +47,13 @@ constructor(
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
-  clickFunction() { 
+  clickFunction(event?: any) { 
     this.loading = true;
     console.log('Log UserName',this.registrationForm.value.userName)
     console.log('Log password',this.registrationForm.value.password) 
     const payloads  = {"email": this.registrationForm.value.userName, "password":this.registrationForm.value.password}
+    localStorage.setItem('userData', JSON.stringify(payloads))
+    sessionStorage.setItem('userData', JSON.stringify(payloads))
     console.log('Log the time is given as1:', new Date().getMilliseconds());
     console.log("Log payload", payloads );
     
@@ -52,18 +63,12 @@ constructor(
 
       let userID = data.userID;
       console.log('Log the time is given as2:', new Date().getMilliseconds());
-      this.routing.navigate([`/provider/${userID}`]);
+      this.routing.navigate([`/provider/${userID}/dashboard/patient`]);
 
-      // if (userID){
-      //   this.authService.getProfiles(userID).subscribe(data =>{
-      //     console.log("Log userID",userID);  
-      //   console.log("Log getProfilessssssssssss", data); 
-      //   this.authService.profile = data;
-
-      // })
-      // }
+  
     })
     console.log('Log the time is given as3:', new Date().getMilliseconds());
   }
+  
 }
 

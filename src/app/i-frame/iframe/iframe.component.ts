@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 import { ClinicService } from 'src/app/shared/service/clinic.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-iframe',
@@ -22,9 +23,11 @@ export class IframeComponent implements OnInit {
     private cs: ClinicService,
     private authService: AuthService,
     private routing: ActivatedRoute,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private location: Location
   ) {
     this.profile = this.authService.profile;
+    // this.encounterID = this.routing.snapshot.params['encounterId']
     this.routing.params.subscribe(params => {
       console.log('params--', params);
       this.encounterID = params['encounterId'];
@@ -46,9 +49,12 @@ export class IframeComponent implements OnInit {
      this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     this.cs.encountersIframe(payload).subscribe((res: any) => {
       console.log('checking the iframe ', res);
-
+` `
     }, (error) => {
       console.log('error exeption');
     });
+  }
+  goback(){
+    this.location.back();
   }
   }

@@ -1,79 +1,148 @@
-<nb-card>
+<nb-card size="giant" class="mb-0">
     <nb-card-header>
-        <h2>Patient {{(allData.count)}}</h2>
+        <h2>Patient {{(allData?.count)}}</h2>
     </nb-card-header>
     <nb-card-body>
         <nb-tabset>
             <nb-tab tabTitle="DEMOGRAPHICS">
-              <p>DEMOGRAPHICS</p>
+                <p>DEMOGRAPHICS</p> 
             </nb-tab>
             <nb-tab tabTitle="ACTIVITY">
-              <p>ACTIVITY</p>
+                <p>ACTIVITY</p>
             </nb-tab>
-          </nb-tabset>
-          <div class="d-flex  align-items-baseline">
-            <input type="search" class="me-2" nbInput placeholder="Search With Name">
+        </nb-tabset>
+        <div class="d-flex  align-items-baseline">
+            <input type="search" class="me-2" nbInput placeholder="Search With Name" [(ngModel)]="searching">
             <nb-icon icon="funnel-outline" pack="eva" class="mx-4 fs-2"></nb-icon>
             <button nbButton outline status="primary" class="ms-2">CREATE NEW PATIENT</button>
-          </div>
-          <ngx-datatable class="material h-100 mt-5" [rows]="rows" columnMode="force" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true">
-            <ngx-datatable-column name="Name" prop="name" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
+        </div>
+        <ngx-datatable class="material h-100 mt-5 bootstrap" [rows]="rows |filter:searching" [columns]="columns"
+            [columnMode]="ColumnMode.force" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" (activate)="onActivate($event)">
+            <ngx-datatable-column name="Name" prop="fullName" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center" >
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{value.firstName}} {{value.lastName}}
+                    {{value}}
                 </ng-template>
             </ngx-datatable-column>
-          <ngx-datatable-column name="Consent" prop="consent" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-              <ng-template let-value="value" ngx-datatable-cell-template>
-                  <div [ngSwitch]="value?.consent">
-                    <div *ngSwitch=""></div>
-                  </div>
-              </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Email" prop="email" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{value || '-'}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="DOB" prop="dob" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{getDate(value, 1)}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Monitors" prop="monitors" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{value || '-'}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Assigned Care Manager" prop="careManagers" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{value || '-'}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Onboarded Date" prop="enrollmentDate" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{getDate(value, 2)}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Provider" prop="providers" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{value || '-'}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Conditions" prop="morbidities" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{value || '-'}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Preferred Language" prop="language" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                <span>English</span>
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Action" prop="enrollmentDate" [flexGrow]="3" headerClass="text-center" cellClass="text-center">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-                {{value || '-'}}
-            </ng-template>
-        </ngx-datatable-column>
-          </ngx-datatable>
+            <ngx-datatable-column name="Consent" prop="consent" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center">
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <div [ngSwitch]="value">
+                        <div *ngSwitchCase="'pending'"> <button nbButton outline status="warning" size="tiny"
+                                class="siizze">pending</button></div>
+                        <div *ngSwitchCase="''" class="sizze  w-100"> <button nbButton outline status="danger"
+                                size="tiny"> Add Consent</button></div>
+                        <div *ngSwitchDefault class="sizze  w-100"> <button nbButton outline status="success"
+                                size="tiny" (click)="viewConsent(row)">view Consent</button></div>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Email" prop="email" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value || '-'}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="DOB" prop="dob" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{getDate(value, '1')}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Monitors" prop="monitors" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value || '-'}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Assigned Care Manager" prop="careManagers" [flexGrow]="3"
+                headerClass="text-center" cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value || '-'}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Onboarded Date" prop="enrollmentDate" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{getDate(value, '2')}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Provider" prop="providers" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value || '-'}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Conditions" prop="morbidities" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value || '-'}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Preferred Language" prop="language" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <span>English</span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Action" prop="monitored" [flexGrow]="3" headerClass="text-center"
+                cellClass="text-center">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="d-flex justify-content-around">
+                        <div  (click)="open(dialog)">
+                            <nb-icon icon="link-outline" pack="eva" class="text-primary"></nb-icon>
+                            <ng-template #dialog let-data let-ref="dialogRef">
+                                <nb-card class="w-50">
+                                  <nb-card-header>Options</nb-card-header>
+                                  <nb-card-body class="row ">
+                                    <button nbButton class="video col-12 my-1 "><nb-icon icon="video-outline" pack="eva" class="text-white"></nb-icon>VIDEO</button>
+                                    <button nbButton class="audio col-12  my-1"><nb-icon icon="headphones-outline" pack="eva" class="text-white"></nb-icon>AUDIO</button>
+                                    <button nbButton class="call col-12  my-1"><nb-icon icon="phone-call-outline" pack="eva" class="text-white"></nb-icon>CALL NUMBER</button>
+                                    <button nbButton class="message col-12  my-1"><nb-icon icon="message-square-outline" pack="eva" class="text-white"></nb-icon>MESSAGE</button>
+                                    <button nbButton status="warning" class="text-white col-12  my-1"><nb-icon icon="clock-outline" pack="eva" class="text-white"></nb-icon>ASSESSMENT</button>
+                                  </nb-card-body>
+                                  <nb-card-footer>
+                                    <div  class="text-end">
+                                        <button nbButton (click)="ref.close()" status="danger">CANCEL</button>
+                                  </div>
+                                  </nb-card-footer>
+                                </nb-card>
+                              </ng-template>
+                        </div>
+                        <div [ngSwitch]="value">
+                            <div *ngSwitchCase="true">
+                                <button nbButton outline status="danger" size="tiny" (click)="open(dialog1)">UNENROLL</button>
+                                <ng-template #dialog1 let-data let-ref="dialogRef">
+                                    <nb-card>
+                                      <nb-card-header>Are you sure you want to enroll?</nb-card-header>
+                                      <nb-card-footer>
+                                        <div class="text-end">
+                                        <button nbButton status="danger" (click)="ref.close()">NO</button>
+                                        <button nbButton status="success" class="ms-4">YES</button>
+                                        </div>
+                                      </nb-card-footer>
+                                    </nb-card>
+                                  </ng-template>                            
+                                </div>
+                            <div *ngSwitchCase="false">
+                                <button nbButton outline status="warning" size="tiny" (click)="open(dialog2)">ENROLL</button>
+                                <ng-template #dialog2 let-data let-ref="dialogRef">
+                                    <nb-card>
+                                      <nb-card-header>Are you sure you want to unenroll?</nb-card-header>
+                                      <nb-card-footer>
+                                       <div class="text-end">
+                                        <button nbButton status="danger" (click)="ref.close()">NO</button>
+                                        <button nbButton status="success" class="ms-4">YES</button>
+                                       </div>
+                                      </nb-card-footer>
+                                    </nb-card>
+                                  </ng-template> 
+                            </div>
+                        </div>
+                        <nb-icon icon="file-text-outline" pack="eva" class="text-primary"></nb-icon>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
     </nb-card-body>
 </nb-card>

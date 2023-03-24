@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 
 @Component({
@@ -12,33 +14,41 @@ export class AssessmentComponent implements OnInit {
   PatientDetails: any;
   rows: any;
   rowss:any
-  
-  @Input()
-   get gettingPatientDetails(){
-    return this.patientProfile
-   }
-   set gettingPatientDetails(value: any){
-    if(value){
-      this.PatientDetails = value
-    }
-     
-   }
+  profile: any;
+  patientid: any;
+  userid: any;
 
   constructor(
     private careService: CareManagerService,
-    private cd: ChangeDetectorRef){
+    private cd: ChangeDetectorRef,
+    private authService: AuthService,
+    private activateRoute: ActivatedRoute){
+      this.activateRoute.parent?.params.subscribe(params =>{
+        this.patientid = params['patientID']
+        this.userid = params['id']
+        console.log('****', this.patientid);       
+      })
+      this.assessmentFun()
 }
 ngOnInit(){
+  this.profile = this.authService.profile
+  console.log(' this.profile', this.profile);
+  
 }
 
 assessmentFun(){
   
   const payload =
+  // {
+  // "clinicID":this.profile?.clinicID,
+  // "userID":this.profile?.userID,
+  // "patientID": this.patientid
+  // }
   {
-  "clinicID":this.PatientDetails.clinicID,
-  "userID":this.PatientDetails.userID,
-  "patientID":this.PatientDetails.patientID
-  }
+    "clinicID":"1000254",
+    "userID":this.userid,
+    "patientID": this.patientid
+    }
   this.careService.getAssessmentApi(payload).subscribe((data: any)=>{
     console.log('the data value of getAssessment API', data);
     

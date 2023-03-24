@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LandingComponent } from './landing/landing.component';
 import { ProfileComponent } from './profile/profile.component';
-import { NbActionsModule, NbAutocompleteModule, NbButtonGroupModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbContextMenuModule, NbDatepickerModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbMenuItem, NbMenuModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbTabsetModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
+import { NbActionsModule, NbAutocompleteModule, NbButtonGroupModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbContextMenuModule, NbDatepickerModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbMenuItem, NbMenuModule, NbRouteTabsetModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbTabsetModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgChartjsModule } from 'ng-chartjs';
@@ -16,6 +16,8 @@ import { TaskComponent } from './task/task.component';
 import { VitalsComponent } from './vitals/vitals.component';
 import { ProviderRoutingModule } from './provider-routing.module';
 import { PatientComponent } from './patient/patient.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { PatientComponent } from './patient/patient.component';
     NbSidebarModule,
     NbMenuModule.forRoot(),
     NbMenuModule,
+    Ng2SearchPipeModule,
+    NbRouteTabsetModule
     
     
   ]

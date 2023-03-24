@@ -191,7 +191,7 @@
           </nb-card-header>
           <nb-card-body class="p-0">
             <nb-list [nbSpinner]="loading" class="mx-2 cardht">
-              <nb-list-item *ngFor="let data of searchvalues" class="row py-2 px-0" (click)="getDisplayProfiless(data)">
+              <nb-list-item *ngFor="let data of searchvalues" class="row py-2 px-0" (click)="route(data.patientID)">
                 <!-- <div class="row"> -->
                 <div class="col-9 ">
                   <nb-user size="large" class="mt-2 mb-2" [picture]="data?.imageUrl"
@@ -381,7 +381,7 @@
           </nb-card-body>
         </nb-card>
         <div class=" my-2 scroll pb-0">
-          <nb-tabset (changeTab)="onChangeTab($event)">
+          <!-- <nb-tabset (changeTab)="onChangeTab($event)">
             <nb-tab class="p-0" tabTitle="SNAPSHOT" responsive>
               <div class="p-0">
                 <app-snapshot [patientDetailss]="patientProfile"> </app-snapshot>
@@ -397,7 +397,9 @@
               <app-assessment [gettingPatientDetails]="patientProfile"></app-assessment> 
             </nb-tab>
             <nb-tab class="p-0" tabTitle="DOCUMENTS" responsive> 
-              <app-documents [gettingPatientDetails]="patientProfile"></app-documents>
+              <app-documents [gettingPatientDetails]="patientProfile">
+                4549849849
+              </app-documents>
             </nb-tab>
             <nb-tab class="p-0" tabTitle="HISTORY" responsive>
               <app-history [gettingPatientDetails]="patientProfile"></app-history> 
@@ -405,7 +407,8 @@
             <nb-tab class="p-0" tabTitle="TASKS" responsive>
               <app-task [gettingPatientDetails]="patientProfile"></app-task> 
             </nb-tab>
-          </nb-tabset>
+          </nb-tabset> -->
+          <nb-route-tabset [tabs]="tabs" (changeTab)="onChangeTab($event)"></nb-route-tabset>
         </div>
       </div>
     </div>

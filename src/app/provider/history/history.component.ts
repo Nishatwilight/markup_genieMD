@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 
@@ -11,22 +12,23 @@ export class HistoryComponent {
   patientProfile: any;
   details: any;
   row: any;
-  @Input()
-  get gettingPatientDetails(){
-    return this.patientProfile
-  }
-  set gettingPatientDetails(value: any){
-    if(value){
-      this.details = value
-    }
-  }
+  patienid: any;
+
 constructor(
   private careService: CareManagerService,
-  private cd: ChangeDetectorRef
-  ){}
+  private cd: ChangeDetectorRef,
+  private activateRoute: ActivatedRoute
+  ){
+    this.activateRoute.parent?.params.subscribe(params =>{
+      console.log('***', params);
+      this.patienid = params['patientID']
+      
+    })
+    this.historyFun()
+  }
 
 historyFun(){
-  this.careService.getHistoryApi(this.details.patientID).subscribe((data)=>{
+  this.careService.getHistoryApi(this.patienid).subscribe((data)=>{
     console.log('This is HistoryFun API', data);
     this.row =data.list
     this.cd.detectChanges()

@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
+import { LogInComponent } from '../auth/log-in/log-in.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule

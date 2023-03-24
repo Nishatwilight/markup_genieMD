@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import Chart from 'chart.js/auto';
 import * as moment from 'moment';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 
 
@@ -10,28 +12,46 @@ import { CareManagerService } from 'src/app/shared/service/care-manager.service'
   styleUrls: ['./vitals.component.scss']
 })
 export class VitalsComponent implements OnInit, AfterViewInit{
-  @Input() 
-  get getPatientDetails() {
-    return this.patientProfile;
-  }
-  set getPatientDetails(value: any) {
-    if (value) {
-      this.patientProfile = value;
-      console.log('this is vitals patient profile',value);
-      const aaa = value.patientID
-      console.log('this is viral patient id', value.patientID);
-      
-    }
-  }
   name = 'Angular   6';
   canvas: any;
   ctx: any;
   xAxes: any
   @ViewChild('mychart') mychart: any;
+  profile: any;
+  patientid: any;
+  patientProfile: any;
+  noOfDays = -1;
+  vitalslist: any;
+  selectedDateRange = {
+    start: new Date('1900-02-01'),
+    end: new Date()
+  };
+  constructor(
+    private careService: CareManagerService,
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
+  ) {
+    console.log("+++++>>", this.activatedRoute.parent?.params);   
+    this.activatedRoute.parent?.params.subscribe(params =>{
+      console.log('Checking patient id is available',params);
+      this.patientid = params['patientID']
+      console.log("((((()))))", this.patientid);
+      
+    })
+    this.getvitalsList()
+  }
+  
+  ngOnInit(): void {
+    this.profile = this.authService.profile;
+    console.log('this is authService profile values', this.profile);   
+    console.log("+++++>>", this.activatedRoute.snapshot.params['patientID']); 
+    this.getList(-1)
+  }
 
   ngAfterViewInit() {
     this.canvas = this.mychart.nativeElement; 
     this.ctx = this.canvas.getContext('2d');
+    console.log("+++++>> aftrer", this.activatedRoute.snapshot.params['patientID']); 
 
     let myChart = new Chart(this.ctx, {
       type: 'line',
@@ -54,59 +74,9 @@ export class VitalsComponent implements OnInit, AfterViewInit{
           ],
         }]
       },
-      // options: {
-      //   responsive: true,
-      //   title: {
-      //     display: true,
-      //     text: 'Höhenlinie'
-      //   },
-      //   scales: {
-      //     xAxes: [{
-      //       type: 'linear',
-      //       position: 'bottom',
-      //       ticks: {
-      //         userCallback: function (tick: any) {
-      //           if (tick >= 1000) {
-      //             return (tick / 1000).toString() + 'km';
-      //           }
-      //           return tick.toString() + 'm';
-      //         }
-      //       },
-      //       scaleLabel: {
-      //         labelString: 'Länge',
-      //         display: true,
-      //       }
-      //     }],
-      //    yAxes: [{
-      //       type: 'linear',
-      //       ticks: {
-      //         userCallback: function (tick: any) {
-      //           return tick.toString() + 'm';
-      //         }
-      //       },
-      //       scaleLabel: {
-      //         labelString: 'Höhe',
-      //         display: true
-      //       }
-      //     }]
-      //   }
-      // }
     });
   }
-  patientProfile: any;
-  noOfDays = -1;
-  vitalslist: any;
-  selectedDateRange = {
-    start: new Date('1900-02-01'),
-    end: new Date()
-  };
-  constructor(
-    private careService: CareManagerService,
-  ) {}
 
-  ngOnInit(): void {
-    this.getList(-1)
-  }
   getvitalsList(){
     console.log("checking the getvitallist",this.getvitalsList);
     const fromDates = new Date(this.selectedDateRange.start).getTime();
@@ -116,7 +86,7 @@ export class VitalsComponent implements OnInit, AfterViewInit{
         "vitalTypeID":20,
         startDate: moment(fromDates).format('YYYY-MM-DD'),
         endDate: moment(toDates).format('YYYY-MM-DD'),
-        "username":"dasfdasf2344"
+        "username":this.patientid
       }
       this.careService.gettingViratalsApi(payload).subscribe((data: any) => {
         console.log("the given lis offf", data);

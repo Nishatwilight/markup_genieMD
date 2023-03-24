@@ -1,12 +1,16 @@
-<p (click)="historyFun()">history works!</p>
+<!-- <app-documents><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet officia delectus ratione aspernatur tenetur sint voluptatem modi distinctio consequatur maiores nisi repellendus sapiente, incidunt eius, laudantium nam voluptatum. Aut, sunt!
+</div></app-documents> -->
+
 <nb-card size="giant" class=" mb-0">
-  <nb-card-body>
-    <div class="d-flex justify-content-end my-2">
+    <nb-card-header class="d-flex justify-content-end my-2">
       <nb-actions size="medium">
         <nb-action icon="plus-circle-outline"></nb-action>
         <nb-action icon="refresh-outline"></nb-action>
       </nb-actions>
-    </div>
+    </nb-card-header>
+  <!-- </app-documents> -->
+  <nb-card-body>
+
     <ngx-datatable class="material h-100" [rows]="row" columnMode="force" [headerHeight]="50" [footerHeight]="0"
       [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
       <ngx-datatable-column name="Date & Time" prop="audittime" headerClass="text-center" cellClass="text-center">

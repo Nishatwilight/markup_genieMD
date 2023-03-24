@@ -29,6 +29,14 @@ export class EncounterComponent {
     public route: ActivatedRoute,
   ) {
     this.profile = this.authService.profile;
+    this.encounterBuckets = this.route.snapshot.params['buckets'];
+    console.log("this.encounterBuckets",this.encounterBuckets);
+    
+    if (this.encounterBuckets === 'scheduled') {
+      this.getdate(1);
+    } else {
+      this.bucket(this.encounterBuckets)
+    }
     this.route.params.subscribe((params: any) => {
       console.log('params -------->', params)
       console.log('params -------->', params.buckets)
@@ -195,8 +203,9 @@ export class EncounterComponent {
     return dateTime
   }
   onActivate(event: any) {
+    
     if (event.type === 'click') {
-      this.routing.navigate(['provider', this.profile.userID, 'dashboard', 'encounters', event.row.encounterID])
+      this.routing.navigate(['provider', this.profile.userID, 'dashboard', 'iframe', event.row.encounterID])
     }
   }
 }

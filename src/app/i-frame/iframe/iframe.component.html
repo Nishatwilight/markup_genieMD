@@ -1,3 +1,22 @@
-<div class=" h-100">
-    <iframe id="" width="100%" height="100%" frameBorder="0" [src]="urlSafe"></iframe>  
-</div>
+<nb-card class="sidegap" size="giant">
+    <div class="row mb-3">
+        <div class="col-md-1 col-12 text-center  my-auto mt-3">
+            <nb-icon  icon="arrow-back-outline" class="fs-3 cursor-pointer" (click)="goback()"></nb-icon>
+        </div>
+        <div class="col text-end mt-3">
+            <button nbButton  status='primary' size="medium" class="me-3">Message</button>
+    
+            <button nbButton status='danger' class="me-3" size="medium">Start Waiting Room Call</button>
+          
+            <button nbButton status='success' class="me-3" size="medium">Provider Private Notes</button>
+    
+            <button nbButton  size="medium" status='warning' class="me-3">Visit Summary</button>
+    
+             <button nbButton status='info' class="me-3" size="medium" nbButton>Actions<nb-icon
+                    icon="arrow-ios-downward-outline"></nb-icon></button> 
+        </div>
+    </div>
+    <div class=" h-100">
+        <iframe  width="100%" height="100%" frameBorder="0" [src]="urlSafe"></iframe>  
+    </div>
+    </nb-card>
