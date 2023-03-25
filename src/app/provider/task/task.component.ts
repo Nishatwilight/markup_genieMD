@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
@@ -15,8 +15,10 @@ export class TaskComponent {
     rowsS: any;
     dateValue = moment(new Date()).format("YYYY-MM-DD")
   patientid: any;
+  values: any;
   constructor(private careService: CareManagerService,
-    private activatedRoute: ActivatedRoute){
+    private activatedRoute: ActivatedRoute,
+    private cd: ChangeDetectorRef){
       this.activatedRoute.parent?.params.subscribe(params=>{
         console.log('activatedRoute', params);
         this.patientid = params['patienid']
@@ -70,8 +72,10 @@ export class TaskComponent {
     console.log('&&&&&&&', todayDate);
     
       this.careService.getTaskForCompletedDateApi(payload).subscribe((data)=>{
-        console.log('this is completedTask API');     
-      })
+        console.log('this is completedTask API');   
+        this.cd.detectChanges()
+  
+      })      
   }
   getDateValue(value: any){
     const time = moment(value,  'HH:mm:ss').format("hh:mm A")

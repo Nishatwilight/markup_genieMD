@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { CareManagerService } from 'src/app/shared/service/care-manager.service';
@@ -13,10 +13,11 @@ export class DocumentsComponent {
   patientDetail: any;
   profile: any;
   userid: any;
+  rows: any;
 
 constructor(private careService: CareManagerService,
-  private authservice: AuthService,
-  private activeRoute: ActivatedRoute){
+  private activeRoute: ActivatedRoute,
+  private cd: ChangeDetectorRef){
   this.documentsFun()
   this.activeRoute.parent?.params.subscribe(params=>{
   console.log("'''''''''''", params);
@@ -26,11 +27,14 @@ constructor(private careService: CareManagerService,
   })
 }
 ngOnInit(){
-  this.profile = this.authservice.profile
 }
 documentsFun(){
   this.careService.getDocumentsApi(this.userid).subscribe((data: any) =>{
     console.log('this is document API patient data', data);  
+    this.rows = data.medicalRecordsList
+    this.cd.detectChanges()
+    console.log("document API", this.rows);
+    
   })
 }
 }

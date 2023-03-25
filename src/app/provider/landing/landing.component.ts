@@ -18,7 +18,6 @@ export class LandingComponent {
   constructor( private authService: AuthService,
     private sidebarService: NbSidebarService,
     public cs: ClinicService,
-    private guardService: GuardService,
     public routing: Router){}
   ngOnInit(){
     this.profile = this.authService.profile;
@@ -34,9 +33,7 @@ export class LandingComponent {
       {
         title: 'Patients',
         icon: 'people-outline',
-        link: `/provider/${this.profile.userID}`
-        // link: `/provider/${this.profile.userID}/patient`,
-
+        link: `/provider/${this.profile.userID}/dashboard/patient`
       },
       {
         title: 'Chat',

@@ -21,12 +21,12 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Task" prop="startTime" headerClass="text-center" cellClass="text-center">
             <ng-template let-value="value" ngx-datatable-cell-template>
-              {{ value }}
+              {{ value || "-" }}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Task description" prop="details" headerClass="text-center" cellClass="text-center">
             <ng-template let-value="value" ngx-datatable-cell-template>
-              {{ value }}
+              {{ value  || "-" }}
             </ng-template>
           </ngx-datatable-column>
           </ngx-datatable>

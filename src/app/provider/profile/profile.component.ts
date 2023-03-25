@@ -177,6 +177,8 @@ export class ProfileComponent implements OnInit {
     })
   }
   route(data: any){
+    console.log("((((", data);
+    
     this.routing.navigate(['provider', this.profile.userID,'dashboard','patient', data])
 
   }
