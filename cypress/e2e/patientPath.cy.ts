@@ -28,16 +28,17 @@ describe('Checking path ffor the patient', ()=>{
    cy.get('#name').type('drindia20')
    cy.get('#password').type('Test1234')
    cy.get('.allign').click()
-   cy.url().should('includes','dashboard/patient')
-   cy.wait(1000)
    getPatients()
-  //  cy.get('#searching').type('New one')
+
+   cy.url().should('eq','http://localhost:4200/#/provider/c98218881cca47068e869e50ac103bc5/dashboard/patient')
+   cy.wait(1000)
+   cy.get('#searching').type('a a')
 
  });
 })
 
  function getPatients() {
-  cy.intercept('GET', `${Cypress.env('api')}/Pateint/PatientsList`, {
+  cy.intercept('POST', `${Cypress.env('api')}/Pateint/PatientsList`, {
     statusCode: 200,
     body: [
      {"total":42,"count":17,"list":[
@@ -93,3 +94,17 @@ describe('Checking path ffor the patient', ()=>{
 }
 
 
+// describe('User Table', () => {
+//   beforeEach(() => {
+//     cy.visit('/user-table'); // Replace with the URL of your page containing the user table
+//   });
+
+//   it('should navigate to the correct user URL when a row is clicked', () => {
+//     const userId = '123'; // Replace with the user ID you want to test
+
+//     cy.get(`tr[data-user-id="${userId}"]`) // Select the table row with the specified user ID
+//       .click(); // Click on the row
+
+//     cy.url().should('include', `/user/${userId}`); // Assert that the URL contains the expected user ID
+//   });
+// });
