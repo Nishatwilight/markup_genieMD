@@ -14,7 +14,7 @@ constructor(){
 // clearAuthToken(){
 //  sessionStorage.removeItem('userData');
 // }
-  autoLogin(){
-   !!sessionStorage.getItem('userData')    
-  }
+  // autoLogin(){
+  //  !!sessionStorage.getItem('userData')    
+  // }
 }

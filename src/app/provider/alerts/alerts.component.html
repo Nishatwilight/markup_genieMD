@@ -8,7 +8,7 @@
                 <nb-action icon="refresh-outline"></nb-action>
             </nb-actions>
         </div>
-        <ngx-datatable class="material h-100" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0" 
+        <ngx-datatable class="material h-100 table table-striped" [rows]="rows" columnMode="force" [headerHeight]="50" [footerHeight]="0" 
             [rowHeight]="50" [scrollbarV]="true" >
             <ngx-datatable-column name=" "  prop="alertValue" headerClass="text-center" cellClass="text-center">
                 <ng-template let-value="value" ngx-datatable-cell-template >

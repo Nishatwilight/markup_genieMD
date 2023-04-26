@@ -94,7 +94,10 @@ export class EncounterComponent {
     console.log(this.searchValues);
 
   }
-  bucket(type: any) {
+  bucket(type: any, sort?: { sortBy: number, sortDirection: number })  {
+
+
+
 
     let payload: any = {
       "clinicID": this.profile.clinicID,
@@ -107,73 +110,91 @@ export class EncounterComponent {
     switch (type) {
       case 6:
       case 'waitingroom':
+        if (!sort) {
+          sort = { sortBy: 0, sortDirection: 0 };
+        }
         payload = {
           ...payload,
           "providerOnly": false,
-          "sortBy": 0,
+          "sortBy": sort.sortBy,
           "status": [0, 1, 4],
-          "type": 6
+          "type": 6,
+          'sortDirection':sort.sortDirection
         }
         break
       case 1:
       case 'scheduled':
-
+        if (!sort) {
+          sort = { sortBy: 0, sortDirection: 0 };
+        }
         payload = {
           ...payload,
           "providerOnly": true,
-          "sortBy": 3,
+          "sortBy": sort.sortBy,
           "status": [0, 1, 4],
           "type": 1,
-          "sortDirection": 0,
+          "sortDirection": sort.sortDirection,
           "start": this.autoDate.fromDate,
           "end": this.autoDate.endDate,
         }
         break
       case 0:
       case 'asynchronous':
+        if (!sort) {
+          sort = { sortBy: 0, sortDirection: 0 };
+        }
         payload = {
           ...payload,
           "providerOnly": false,
-          "sortBy": 0,
-          "sortDirection": 0,
+          "sortBy": sort.sortBy,
+          "sortDirection": sort.sortDirection,
           "status": [0, 1],
           "type": 0
         }
         break
       case 3:
       case 'callback':
+        if (!sort) {
+          sort = { sortBy: 0, sortDirection: 0 };
+        }
         payload =
         {
           ...payload,
           "providerOnly": false,
-          "sortBy": 0,
+          "sortBy": sort.sortBy,
           "status": [0, 1],
           "type": 3,
-          "sortDirection": 0
+          "sortDirection": sort.sortDirection,
         }
         break
       case -2:
       case 'followup':
+        if (!sort) {
+          sort = { sortBy: 0, sortDirection: 0 };
+        }
         payload =
 
         {
           ...payload,
           "providerOnly": true,
-          "sortBy": 0,
+          "sortBy": sort.sortBy,
           "status": [7],
           "type": -2,
-          "sortDirection": 1
+          "sortDirection": sort.sortDirection,
         }
         break
       case 2:
       case 'completed':
+        if (!sort) {
+          sort = { sortBy: 0, sortDirection: 0 };
+        }
         payload = {
           ...payload,
           "providerOnly": true,
-          "sortBy": 0,
+          "sortBy": sort.sortBy,
           "status": [2],
           "type": -2,
-          "sortDirection": 1
+          "sortDirection": sort.sortDirection,
         }
     }
     this.cs.encounterApi(payload).subscribe((data) => {
@@ -191,6 +212,7 @@ export class EncounterComponent {
         return value;
       })
     })
+
   }
   getvalue(values: any) {
     // console.log("EEEEEEEE", values);
@@ -203,9 +225,34 @@ export class EncounterComponent {
     return dateTime
   }
   onActivate(event: any) {
-    
+    console.log('onActivate,', event);
     if (event.type === 'click') {
       this.routing.navigate(['provider', this.profile.userID, 'dashboard', 'iframe', event.row.encounterID])
+    }
+  }
+  onSort(event: any) {
+    console.log('event', event);
+    const cloumn = event.column.name
+    if (cloumn === 'Reported' || cloumn === 'Status') {
+      console.log('column', cloumn);
+      let sortBy = 0;
+      let sortDirection = 0;
+      if (event.newValue == 'asc') {
+        sortDirection = 0;
+      }
+      else {
+        sortDirection = 1;
+      }
+      switch (cloumn) {
+        case 'Reported':
+          sortBy = 0;
+          break;
+        case 'Status':
+          sortBy = 4;
+          break;
+      }
+      this.bucket(this.encounterBuckets, { sortBy, sortDirection })
+      console.log('ccheckijjjjj', this.encounterBuckets);
     }
   }
 }

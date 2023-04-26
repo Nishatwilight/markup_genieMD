@@ -7,7 +7,9 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class CareManagerService {
+
   patientProfile: any;
+  post: any;
 
   constructor(private http: HttpClient,
     private authService :AuthService,
@@ -29,9 +31,7 @@ export class CareManagerService {
   }
   gettingViratalsApi(payload: any): Observable<any>{
     console.log("%%%%", payload);
-
     return this.http.post(`Vitals/Search`,  payload, { headers: this.getHeaders() })
-    
   }
   getAlertApi(patientID: any): Observable<any>{
     return this.http.get(`Alerts/List/${this.authService.profile.clinicID}/${patientID}`, { headers: this.getHeaders() })
@@ -61,7 +61,7 @@ export class CareManagerService {
     return this.http.get(`Alerts/AlertActions/${id}`, { headers: this.getHeaders() })
   }
   patientList(payload: any):Observable<any>{
-    return this.http.post(`Pateint/PatientsList`, payload)
+    return this.http.post(`Pateint/PatientsList`, payload, { headers: this.getHeaders() })
   }
   
 

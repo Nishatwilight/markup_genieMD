@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 import { AuthService } from 'src/app/shared/service/auth.service';
-import { CareManagerService } from 'src/app/shared/service/care-manager.service';
 import { ClinicService } from 'src/app/shared/service/clinic.service';
-import { GuardService } from 'src/app/shared/service/guard.service';
 
 @Component({
   selector: 'app-landing',

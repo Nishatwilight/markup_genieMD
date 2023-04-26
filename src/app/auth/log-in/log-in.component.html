@@ -5,7 +5,7 @@
   <div class="col-12 col-md-6 my-auto login_div">
     <div class= "row mx-1">
       <nb-card class="col-12 mx-auto col-md-10 " [nbSpinner]="loading" >
-          <nb-card-header class="text-center login_title">Log In Page</nb-card-header>
+          <nb-card-header class="text-center login_title" (click)="formArray()">Log In Page</nb-card-header>
           <nb-card-body>
               <form [formGroup]="registrationForm">
                   <div class="form-group">

@@ -35,7 +35,7 @@ import { NgChartjsModule } from 'ng-chartjs';
 
 
   ], 
-  providers: [AuthService,
+  providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorInterceptor,

@@ -9,12 +9,8 @@ export class AuthService {
   patientProfile: any;
   profile: any;
   userID: any;
-  // users: any;
 
-
-  constructor(private http: HttpClient) {  
-    
-  }
+  constructor(public http: HttpClient) { }
    login(payload: any): Observable<any> {
     return this.http.post(`Email/SignIn/`, payload )          
   }
