@@ -19,8 +19,8 @@
         <ngx-datatable class="material h-100 mt-5 bootstrap" [rows]="rows |filter:searching" [columns]="columns"
             [columnMode]="ColumnMode.force" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" (activate)="onActivate($event)">
             <ngx-datatable-column name="Name" prop="fullName" [flexGrow]="3" headerClass="text-center"
-                cellClass="text-center" >
-                <ng-template let-value="value"  ngx-datatable-cell-template>
+                cellClass="text-center"  id="ngxData">
+                <ng-template let-value="value"  ngx-datatable-cell-template id="ng-temp">
                     <div id="check">
                         {{value}} 
                     </div>
