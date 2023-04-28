@@ -87,12 +87,12 @@
                           <div class="row mt-1">
                             <div class="col d-flex">
                               <div class="col my-1 d-flex ">
-                                <nb-checkbox [checked]="caps == true" status="basic"></nb-checkbox>
+                                <nb-checkbox [checked]="caps == true" status="basic" id="checkUpper"></nb-checkbox>
                                 <div class="ms-2" [ngStyle]="{'color': caps? 'green' : 'red'}">At least one uppercase
                                 </div>
                               </div>
                               <div class="col my-1 d-flex">
-                                <nb-checkbox [checked]="lower == true" status="basic"></nb-checkbox>
+                                <nb-checkbox [checked]="lower == true" status="basic" id="checkLower"></nb-checkbox>
                                 <div class="ms-2" [ngStyle]="{'color': lower? 'green' : 'red'}">At least one lowercase
                                 </div>
                               </div>
@@ -101,12 +101,12 @@
                           <div class="row mt-1">
                             <div class="col d-flex ">
                               <div class="col my-1 d-flex">
-                                <nb-checkbox [checked]="number == true" status="basic"></nb-checkbox>
+                                <nb-checkbox [checked]="number == true" status="basic" id="checkNum"></nb-checkbox>
                                 <div class="ms-2" [ngStyle]="{'color': number? 'green' : 'red'}">At least one number
                                 </div>
                               </div>
                               <div class="col my-1 d-flex">
-                                <nb-checkbox [checked]="special == true" status="basic"></nb-checkbox>
+                                <nb-checkbox [checked]="special == true" status="basic" id="checkSpl"></nb-checkbox>
                                 <div class="ms-2" [ngStyle]="{'color': special ? 'green' : 'red'}">One special
                                   characters</div>
                               </div>
