@@ -11,6 +11,7 @@ import { InterceptorInterceptor } from './shared/interceptor/interceptor.interce
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AuthService } from './shared/service/auth.service';
 import { NgChartjsModule } from 'ng-chartjs';
+// import { AuthModule } from '@auth0/auth0-angular';
 
 
 @NgModule({
@@ -33,6 +34,14 @@ import { NgChartjsModule } from 'ng-chartjs';
     NbMenuModule.forRoot(),
     // NgChartjsModule.registerPlugin([...]),
 
+    // Import the module into the application, with configuration
+    // AuthModule.forRoot({
+    //   domain: 'dev-jq5txjlpbza43zvp.us.auth0.com',
+    //   clientId: 'qIZPn05YSMz1yPBftIhXyJGbjRrmnlvK',
+    //   authorizationParams: {
+    //     redirect_uri: window.location.origin
+    //   }
+    // }),
 
   ], 
   providers: [

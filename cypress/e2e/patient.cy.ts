@@ -64,7 +64,7 @@ cy.wait(3000)
 })
 
 
-function getPatients() {
+function getPatientss() {
     cy.intercept('POST', `${Cypress.env('api')}/Pateint/PatientsList`, {
       statusCode: 200,
       body: [
