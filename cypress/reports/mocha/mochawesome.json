@@ -1,0 +1,131 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-05-27T03:05:11.389Z",
+    "end": "2023-05-27T03:05:12.263Z",
+    "duration": 874,
+    "testsRegistered": 2,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 1,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "aa377154-4fa4-4d48-a3de-1e0ff5ca3162",
+      "title": "",
+      "fullFile": "cypress\\e2e\\encounters.cy.ts",
+      "file": "cypress\\e2e\\encounters.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a9bf0e5e-0a24-4377-98db-0038d2728443",
+          "title": "Testing the flow of Enounters menu",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Encounters Flow Checking",
+              "fullTitle": "Testing the flow of Enounters menu Encounters Flow Checking",
+              "timedOut": null,
+              "duration": 405,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": true,
+              "context": null,
+              "code": "cy.get('a.ng-tns-c53-0').click();\ncy.wait(3000);\ncy.get('.waitingroom').click({ force: true });\ncy.wait(5000);\n// cy.get(\"datatable-header[role='rowgroup']\")\n// .invoke('css', 'overflow', 'visible');\ncy.get('.datatable-row-center.datatable-row-group.ng-star-inserted')\n    .eq(1)\n    .click({ force: true });\ncy.wait(2000);\ncy.get('.datatable-body-row').should('exist');\ncy.get('datatable-body-row').eq(1).within(() => {\n    cy.wait(2000);\n    cy.get('.datatable-body-cell:nth-child(1)').should('have.text', ' Hey He do ').click({ force: true });\n    ;\n});\ncy.wait(5000);\ncy.screenshot('iframe images');\ncy.get('.user-picture.image.ng-star-inserted').screenshot('provider');",
+              "err": {
+                "message": "CypressError: `cy.visit()` failed trying to load:\n\n/\n\nWe failed looking for this file at the path:\n\n/Users/jeeva/OneDrive/Desktop/Twilight workspace/unitTest/markup_genieMD/\n\nThe internal Cypress web server responded with:\n\n  > 404: Not Found\n\nBecause this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Testing the flow of Enounte...`",
+                "estack": "CypressError: `cy.visit()` failed trying to load:\n\n/\n\nWe failed looking for this file at the path:\n\n/Users/jeeva/OneDrive/Desktop/Twilight workspace/unitTest/markup_genieMD/\n\nThe internal Cypress web server responded with:\n\n  > 404: Not Found\n\nBecause this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Testing the flow of Enounte...`\n    at <unknown> (http://localhost:61001/__cypress/runner/cypress_runner.js:147661:84)\n    at visitFailedByErr (http://localhost:61001/__cypress/runner/cypress_runner.js:147069:12)\n    at <unknown> (http://localhost:61001/__cypress/runner/cypress_runner.js:147644:13)\n    at tryCatcher (http://localhost:61001/__cypress/runner/cypress_runner.js:18744:23)\n    at Promise._settlePromiseFromHandler (http://localhost:61001/__cypress/runner/cypress_runner.js:16679:31)\n    at Promise._settlePromise (http://localhost:61001/__cypress/runner/cypress_runner.js:16736:18)\n    at Promise._settlePromise0 (http://localhost:61001/__cypress/runner/cypress_runner.js:16781:10)\n    at Promise._settlePromises (http://localhost:61001/__cypress/runner/cypress_runner.js:16857:18)\n    at _drainQueueStep (http://localhost:61001/__cypress/runner/cypress_runner.js:13451:12)\n    at _drainQueue (http://localhost:61001/__cypress/runner/cypress_runner.js:13444:9)\n    at ../../node_modules/bluebird/js/release/async.js.Async._drainQueues (http://localhost:61001/__cypress/runner/cypress_runner.js:13460:5)\n    at Async.drainQueues (http://localhost:61001/__cypress/runner/cypress_runner.js:13330:14)\nFrom Your Spec Code:\n    at Context.eval (webpack:///./cypress/e2e/encounters.cy.ts:4:13)",
+                "diff": null
+              },
+              "uuid": "9387db77-adbe-4447-8629-feb9e1d40fd8",
+              "parentUUID": "a9bf0e5e-0a24-4377-98db-0038d2728443",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "test form",
+              "fullTitle": "Testing the flow of Enounters menu test form",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.xpath(\"//div[normalize-space()='Kool Wong']//div[@id='check']\").click();\ncy.wait(4000);\ncy.xpath(\"//*[name()='g' and contains(@data-name,'plus-circl')]//*[name()='rect' and contains(@width,'24')]\").click({ force: true });\ncy.wait(2000);\ncy.get('#username').type('Testing');\ncy.get('#pass').type('Test@asas123', { delay: 500 });\ncy.wait(2000);\ncy.get('#pass').clear();\ncy.wait(2000);\ncy.get('#pass').type('A$', { delay: 1000 });\ncy.xpath(\"//*[name()='g' and contains(@data-name,'close')]//*[name()='rect' and contains(@width,'24')]\").click({ force: true });\n// cy.get('.display > .status-success').click()",
+              "err": {},
+              "uuid": "61f3628a-f048-4189-b746-e5906e3827e9",
+              "parentUUID": "a9bf0e5e-0a24-4377-98db-0038d2728443",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "9387db77-adbe-4447-8629-feb9e1d40fd8"
+          ],
+          "pending": [
+            "9387db77-adbe-4447-8629-feb9e1d40fd8"
+          ],
+          "skipped": [
+            "61f3628a-f048-4189-b746-e5906e3827e9"
+          ],
+          "duration": 405,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mocha",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

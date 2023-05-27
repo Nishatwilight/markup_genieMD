@@ -1,6 +1,6 @@
 describe('Testing the flow of Patient menu', ()=>{
  it('patientMenu Flow Checking',()=>{
-  cy.visit('/')
+  cy.visit('http://localhost:4200/#/auth/login')
   cy.get('#name').type('drindia20')
   cy.wait(3000)
   cy.get('#password').type('Test1234')
@@ -27,7 +27,7 @@ cy.get('.datatable-body-row').should('exist')
 cy.wait(3000)
 
  cy.get('datatable-body-row').eq(0).within(() => {
-    cy.get('.datatable-body-cell:nth-child(1)').should('have.text', ' AHA Core ').click();;
+    cy.get('.datatable-body-cell:nth-child(1)').should('have.text', ' hill Test ').click();;
   });
   cy.wait(3000)
   cy.go('back')

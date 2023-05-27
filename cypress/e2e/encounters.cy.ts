@@ -42,7 +42,7 @@ describe('Testing the flow of Enounters menu', () => {
           cy.get('.datatable-body-row').should('exist')
           cy.get('datatable-body-row').eq(1).within(() => {
                cy.wait(2000)
-               cy.get('.datatable-body-cell:nth-child(1)').should('have.text', ' Hey He do ').click({ force: true });;
+               cy.get('.datatable-body-cell:nth-child(1)').should('have.text', ' hill Test ').click({ force: true });;
           });
           cy.wait(5000)
           cy.screenshot('iframe images');
@@ -52,7 +52,7 @@ describe('Testing the flow of Enounters menu', () => {
      //TestCase -2 
 
      it('test form', ()=>{
-          cy.xpath("//div[normalize-space()='Kool Wong']//div[@id='check']").click()
+          cy.xpath("//div[normalize-space()='hill Test']//div[@id='check']").click()
           cy.wait(4000)
           cy.xpath("//*[name()='g' and contains(@data-name,'plus-circl')]//*[name()='rect' and contains(@width,'24')]").click({force: true})
           cy.wait(2000)
