@@ -11,6 +11,10 @@ import { GuardService } from 'src/app/shared/service/guard.service';
 })
 
 export class LogInComponent implements OnInit {
+  formControl!: FormControl<string | null>;
+  router(router: any, arg1: string) {
+    throw new Error('Method not implemented.');
+  }
   registrationForm: FormGroup | any;
   showPassword = false;
   password: any;
@@ -25,6 +29,8 @@ constructor(
     console.log('constructore called');
 
 }
+
+
   ngOnInit(): void {
     console.log('ngOnInit called');
     this.registrationForm = new FormGroup({
@@ -52,7 +58,7 @@ constructor(
     console.log('Log UserName',this.registrationForm.value.userName)
     console.log('Log password',this.registrationForm.value.password) 
     const payloads  = {"email": this.registrationForm.value.userName, "password":this.registrationForm.value.password}
-    localStorage.setItem('userData', JSON.stringify(payloads))
+    // localStorage.setItem('userData', JSON.stringify(payloads))
     sessionStorage.setItem('userData', JSON.stringify(payloads))
     console.log('Log the time is given as1:', new Date().getMilliseconds());
     console.log("Log payload", payloads );
@@ -63,11 +69,13 @@ constructor(
 
       let userID = data.userID;
       console.log('Log the time is given as2:', new Date().getMilliseconds());
-      this.routing.navigate([`/provider/${userID}/dashboard/patient`]);
-
-  
+      this.routing.navigate([`/provider/${userID}/dashboard/patient`]); 
     })
     console.log('Log the time is given as3:', new Date().getMilliseconds());
+  }
+  formArray(){
+    this.routing.navigate([`/auth/login/forms`]); 
+
   }
   
 }

@@ -11,7 +11,7 @@ import { CareManagerService } from '../service/care-manager.service';
   providedIn: 'root'
 })
 export class DispayResolver implements Resolve<boolean> {
-  constructor( private careService: CareManagerService){}
+  constructor( public careService: CareManagerService){}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>{
     console.log('*))))((((*', route); 
     return this.careService.displayProfile(route)

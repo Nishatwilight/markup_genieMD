@@ -8,8 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { SnapshotComponent } from './profile/snapshot/snapshot.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgChartjsModule } from 'ng-chartjs';
-import * as moment from 'moment';
-import { LandingComponent } from './landing/landing.component';
+import { FormArrayComponent } from './form-array/form-array.component';
 // import momentDurationFormatSetup from "moment-duration-format";
 
 // momentDurationFormatSetup(moment);
@@ -23,6 +22,7 @@ import { LandingComponent } from './landing/landing.component';
 @NgModule({
   declarations: [
     LogInComponent,
+    FormArrayComponent,
 
 
   ],
@@ -53,8 +53,6 @@ import { LandingComponent } from './landing/landing.component';
     NgxDatatableModule,
     NbContextMenuModule,
     NgChartjsModule,
-    
-
   ]
 })
 export class AuthModule { }

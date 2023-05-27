@@ -42,7 +42,7 @@ input[type="search"][value="dark"]::-webkit-search-cancel-button {
 }
 .rightCard{
     height: calc(var(--vh, 1vh) * 100) !important;
-    overflow: auto;
+    // overflow: auto;
 }
 .cardht{
     overflow-x: hidden !important;

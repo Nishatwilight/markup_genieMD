@@ -18,7 +18,8 @@ const routes: Routes = [
     path:'provider',
     loadChildren: () => import('./provider/provider.module').then(m => m.ProviderModule)
   },
-  // {
+  // {-
+  
   //   path:'iframe',
   //   loadChildren: () => import('./i-frame/i-frame.module').then(m => m.IFrameModule)
   // },

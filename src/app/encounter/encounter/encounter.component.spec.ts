@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EncounterComponent } from './encounter.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 describe('EncounterComponent', () => {
   let component: EncounterComponent;
@@ -8,7 +9,8 @@ describe('EncounterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EncounterComponent ]
+      declarations: [ EncounterComponent ],
+      providers: [HttpClient]
     })
     .compileComponents();
 
@@ -17,7 +19,8 @@ describe('EncounterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Hey There', () => {
+    console.log('sdaf');
     expect(component).toBeTruthy();
   });
 });

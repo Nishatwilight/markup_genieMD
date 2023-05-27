@@ -1,4 +1,4 @@
-<nb-card size="giant" class="mb-0">
+<nb-card size="giant" class="mb-0 sideGap">
     <nb-card-header>
         <h2>Patient {{(allData?.count)}}</h2>
     </nb-card-header>
@@ -12,16 +12,18 @@
             </nb-tab>
         </nb-tabset>
         <div class="d-flex  align-items-baseline">
-            <input type="search" class="me-2" nbInput placeholder="Search With Name" [(ngModel)]="searching">
+            <input type="search" class="me-2" nbInput placeholder="Search With Name" [(ngModel)]="searching" id="searching">
             <nb-icon icon="funnel-outline" pack="eva" class="mx-4 fs-2"></nb-icon>
             <button nbButton outline status="primary" class="ms-2">CREATE NEW PATIENT</button>
         </div>
         <ngx-datatable class="material h-100 mt-5 bootstrap" [rows]="rows |filter:searching" [columns]="columns"
             [columnMode]="ColumnMode.force" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" (activate)="onActivate($event)">
             <ngx-datatable-column name="Name" prop="fullName" [flexGrow]="3" headerClass="text-center"
-                cellClass="text-center" >
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{value}}
+                cellClass="text-center"  id="ngxData">
+                <ng-template let-value="value"  ngx-datatable-cell-template id="ng-temp">
+                    <div id="check">
+                        {{value}} 
+                    </div>
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Consent" prop="consent" [flexGrow]="3" headerClass="text-center"

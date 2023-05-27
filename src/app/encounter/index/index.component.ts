@@ -30,6 +30,8 @@ export class IndexComponent {
   ) { }
   ngOnInit() {
     this.profile = this.authService.profile;
+    console.log('"""""""""""""""""""""""""""""', this.profile.providerId);
+    
     this.getStart()
     // this.bucket(6)
 

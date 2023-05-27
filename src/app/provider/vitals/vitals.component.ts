@@ -32,7 +32,7 @@ export class VitalsComponent implements OnInit, AfterViewInit{
     private authService: AuthService
   ) {
     console.log("+++++>>", this.activatedRoute.parent?.params);   
-    this.activatedRoute.parent?.params.subscribe(params =>{
+    this.activatedRoute?.parent?.params?.subscribe(params =>{
       console.log('Checking patient id is available',params);
       this.patientid = params['patientID']
       console.log("((((()))))", this.patientid);

@@ -58,14 +58,14 @@ assessmentFun(){
     const patient_details = this.rows.map((row: any) => {
       console.log('The map function implemented', row);
       
-      try {   // Doubt
+      try {
         row.parseExtraData = JSON.parse(row.extraData);
-      } catch(e) {   // Doubt
+      } catch(e) {
         row.parseExtraData = {};
       }
       return row;
     })
-    this.rowss = [...patient_details];  // Doubt
+    this.rowss = [...patient_details]
     console.log('the value of the rows data in assessment component', this.rowss);
     
     this.cd.detectChanges();

@@ -1,0 +1,74 @@
+<!-- <nb-card>
+    <nb-card-header>
+        Form Array
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="demoForm">
+            <div class="border" formArrayName="formArray1">
+                <div *ngFor="let user of formArray1.controls let i = index">
+                    <div [formGroupName]="i">
+                        <input formControlName="fname" class="mx-2" type="text" nbInput status="success"
+                            placeholder="First Name">
+                        <input formControlName="lname" class="mx-2" type="text" nbInput status="success"
+                            placeholder="Last Name">
+                        <input formControlName="phNumber" class="mx-2" type="text" nbInput status="success"
+                            placeholder="Phone Number">
+                        <button class="m-2" nbButton shape="rectangle" size="small" status="danger"
+                            (click)="remove(i)">Delete</button>
+                        <div formArrayName="formArray2" *ngFor="let users of details(i).controls let x = index">
+                            <div [formGroupName]="x">
+                                <input formControlName="qualify" class="m-2" type="text" nbInput status="success"
+                                    placeholder="Qualification">
+                                <button class="m-2" nbButton shape="rectangle" size="small" status="danger"
+                                    (click)="insideRemove(i,x)">Delete</button>
+                            </div>
+                        </div>
+                        <button class="mx-2" nbButton shape="rectangle" size="small" status="primary"
+                            (click)="addQualification(i)">Add Qualification</button>
+                    </div>
+                </div>
+            </div>
+            <button class="m-2" nbButton shape="rectangle" size="small" status="primary" (click)="overAll()">Add
+                Details</button>
+        </form>
+    </nb-card-body>
+</nb-card> -->
+
+<nb-card>
+    <nb-card-header>
+        Form Array
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="demoForm">
+            <input formControlName="name" nbInput status="success" class="mb-3" type="search" placeholder="name">
+            <input formControlName="mobile" nbInput status="success" class="mb-3" type="search" placeholder="mobile">
+            <input formControlName="sdf" nbInput status="success" class="mb-3" type="search" placeholder="msdfsdfobile">
+            <div formArrayName="rows" *ngFor="let user of formArray1.controls let i = index"> {{i}}
+                <div [formGroupName]="i">
+                    <input formControlName="firstName" nbInput status="success" class="mb-3" type="search"
+                        placeholder="First Name..">
+                    <input formControlName="lastName" nbInput status="success" class="mb-3" type="search"
+                        placeholder="Last Name..">
+                    <input formControlName="password" nbInput status="success" class="mb-3" type="search"
+                        placeholder="Password">
+                    <button class="m-2" nbButton shape="rectangle" size="small" status="primary"
+                        (click)="remove(i)">Remove</button>
+                    <div formArrayName="formArray2" *ngFor="let users of details(i).controls let x= index">
+                        <div [formGroupName]="x">
+                            <input formControlName="age" nbInput status="success" class="mb-3" type="search"
+                                placeholder="Age..">
+                            <input formControlName="gender" nbInput status="success" class="mb-3" type="search"
+                                placeholder="Gender..">
+                            <button class="m-2" nbButton shape="rectangle" size="small" status="primary"
+                                (click)="insideRemove(i,x)">Delete{{x}}</button>
+                        </div>
+                    </div>
+                    <button class="m-2" nbButton shape="rectangle" size="small" status="primary"
+                        (click)="addQualification(i)">Add</button>
+                </div>
+            </div>
+            <button class="m-2" nbButton shape="rectangle" size="small" status="primary" (click)="overAll()">Add
+                Details</button>
+        </form>
+    </nb-card-body>
+</nb-card>
