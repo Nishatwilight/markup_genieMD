@@ -27,7 +27,7 @@ cy.get('.datatable-body-row').should('exist')
 cy.wait(3000)
 
  cy.get('datatable-body-row').eq(0).within(() => {
-    cy.get('.datatable-body-cell:nth-child(1)').should('have.text', ' hill Test ').click();;
+    cy.get('.datatable-body-cell:nth-child(1)').should('have.text', ' Test Dos ').click();;
   });
   cy.wait(3000)
   cy.go('back')
